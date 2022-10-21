@@ -1,24 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Loby_button : MonoBehaviour
 {
-    public GameObject Stage_Select;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject mainMenu;
+    public GameObject stageSelect;
+    public void B_start_button()
     {
-        
+        mainMenu.SetActive(false);
+        stageSelect.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void B_exit2menu_button()
     {
-        
-    }
-
-    void start_button()
-    (
-        Stage_Select.SetActive(true);
+        stageSelect.SetActive(false);
+        mainMenu.SetActive(true);
     }
 }
