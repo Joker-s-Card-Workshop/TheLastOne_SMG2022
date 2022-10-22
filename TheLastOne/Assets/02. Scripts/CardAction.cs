@@ -1,5 +1,146 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+
+public class CardAction : MonoBehaviour
+{
+    public float mouseDownDist = 0;
+    public float mouseUpDist = 0;
+    public float cardAniSpeed = 0;
+    public int cardAniCount = 0;
+    private bool dragDrop = false;
+    private bool isBattle = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (!dragDrop) return;
+        dragDrop = false;
+        if (other.gameObject.tag != "Card") return;
+        float width = other.GetComponent<Renderer>().bounds.size.x;
+        Vector3 pos = other.transform.position;
+
+        if (this.transform.position.x <= other.transform.position.x)
+        {
+            pos.x -= (width + width / 2.0f);
+        }
+        else
+        {
+            pos.x += (width + width / 2.0f);
+        }
+        this.transform.position = pos;
+        isBattle = true;
+        StartCoroutine(CardUpAni(this.transform, other.transform));
+    }
+
+    public void OnMouseDown()
+    {
+        ChangeCardPosToMousePos(mouseDownDist);
+    }
+    public void OnMouseDrag()
+    {
+        ChangeCardPosToMousePos(mouseDownDist);
+    }
+
+    public void OnMouseUp()
+    {
+        ChangeCardPosToMousePos(mouseUpDist);
+        dragDrop = true;
+    }
+
+    /// <summary>
+    /// Change a card position to mouse position
+    /// </summary>
+    /// <param name="dist">mouse Z postion</param>
+    private void ChangeCardPosToMousePos(float dist)
+    {
+        if (isBattle) return;
+        float cameraZ = Camera.main.transform.position.z;
+        dist -= cameraZ;
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        this.transform.position = worldPosition;
+    }
+
+    /// <summary>
+    /// Card Battle Animation
+    /// </summary>
+    /// <param name="t1"> Card1 Transform </param>
+    /// <param name="t2"> Card2 Transform </param>
+    /// <returns></returns>
+    IEnumerator CardUpAni(Transform t1, Transform t2)
+    {
+        Vector3 v1 = t1.position;
+        Vector3 v2 = t2.position;
+        int i = 0;
+
+        while (true)
+        {
+            i++;
+            v1.z -= cardAniSpeed;
+            v2.z -= cardAniSpeed;
+            t1.position = v1;
+            t2.position = v2;
+            if (i * cardAniSpeed >= 10)
+            {
+                t1.position = v1;
+                t2.position = v2;
+                StartCoroutine(CardDownAni(t1, t2));
+                yield break;
+                
+            }
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// Card Battle Animation
+    /// </summary>
+    /// <param name="t1"> Card1 Transform </param>
+    /// <param name="t2"> Card2 Transform </param>
+    /// <returns></returns>
+    IEnumerator CardDownAni(Transform t1, Transform t2)
+    {
+        Vector3 v1 = t1.position;
+        Vector3 v2 = t2.position;
+        int i = 0;
+
+        while (true)
+        {
+            i++;
+            v1.z += cardAniSpeed;
+            v2.z += cardAniSpeed;
+            t1.position = v1;
+            t2.position = v2;
+            if (i * cardAniSpeed >= 10)
+            {
+                t1.position = v1;
+                t2.position = v2;
+                isBattle = false;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator CardBattleAni(Transform t1, Transform t2)
+    {
+        //TODO
+        yield break;
+    }
+
+/*
+=======
 using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
@@ -25,4 +166,5 @@ public class CardAction : MonoBehaviour
 
         transform.DOMove(pos, moveDuration / 2).SetEase(Ease.InBack).OnComplete(() => { transform.DOMove(originPos, moveDuration / 2); });
     }
+*/
 }
