@@ -20,9 +20,8 @@ public class CardData
     public GameObject IllustPrefab;
     public GameObject CardPrefab;
 
-    public Sprite backSprite;
-
-    public Sprite frameSprite;
+    public Texture2D frameTexture;
+    public Texture2D backTexture;
 }
 public class CardDataInit : Singleton<CardDataInit>
 {
@@ -40,7 +39,7 @@ public class CardDataInit : Singleton<CardDataInit>
         {
             var newdata = new CardData();
             newdata.CardName = cardDictionary[i]["CardName"].ToString();
-            newdata.IllustPrefab = Resources.Load ( "Prefab/Illust" + cardDictionary[i]["IllustPrefab"].ToString()) as GameObject;
+            newdata.IllustPrefab = Resources.Load ( "Prefab/Illust/" + cardDictionary[i]["IllustPrefab"].ToString()) as GameObject;
             newdata.CardPrefab = Resources.Load ( "Prefab/Card/CardPrefab") as GameObject;
             switch (cardDictionary[i]["CharacterType"].ToString())
             {
@@ -52,8 +51,10 @@ public class CardDataInit : Singleton<CardDataInit>
                     break;
                 case "Thing":
                     newdata.type = CardData.Season.Thing;
-                    break; 
-            } 
+                    break;
+            }
+            newdata.frameTexture = Resources.Load("Sprites/Illusts/" + cardDictionary[i]["CardFrameSprite"].ToString()) as Texture2D;
+            newdata.backTexture = Resources.Load("Sprites/Illusts/" + cardDictionary[i]["CardBackSprite"].ToString()) as Texture2D;
             Data.Add(newdata);
         }
     }
