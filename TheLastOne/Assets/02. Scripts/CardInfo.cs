@@ -10,7 +10,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CardInfo : MonoBehaviour
 {
-    //Áß·Â°¡¼Óµµ 9.8¿¡ ±Ù»çÄ¡ÀÎ 10
+    [SerializeField]
+    private MeshRenderer _frameMeshRenderer;
+    [SerializeField]
+    private MeshRenderer _backMeshRenderer;
+    //ï¿½ß·Â°ï¿½ï¿½Óµï¿½ 9.8ï¿½ï¿½ ï¿½Ù»ï¿½Ä¡ï¿½ï¿½ 10
     public float gravityScale = 98;
 
     public CardData mydata;
@@ -32,6 +36,9 @@ public class CardInfo : MonoBehaviour
     public void SetCardData(CardData cardData)
     {
         mydata = cardData;
+
+        //_frameMeshRenderer.material.mainTexture = cardData
+
     }
 
 }

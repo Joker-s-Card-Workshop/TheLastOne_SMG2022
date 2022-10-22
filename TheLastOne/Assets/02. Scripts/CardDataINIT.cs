@@ -19,6 +19,10 @@ public class CardData
     public Season type;
     public GameObject IllustPrefab;
     public GameObject CardPrefab;
+
+    public Sprite backSprite;
+
+    public Sprite frameSprite;
 }
 public class CardDataInit : Singleton<CardDataInit>
 {
@@ -50,7 +54,6 @@ public class CardDataInit : Singleton<CardDataInit>
                     newdata.type = CardData.Season.Thing;
                     break; 
             } 
-            Debug.Log("Prefab/Illust" + cardDictionary[i]["IllustPrefab"].ToString());
             Data.Add(newdata);
         }
     }
