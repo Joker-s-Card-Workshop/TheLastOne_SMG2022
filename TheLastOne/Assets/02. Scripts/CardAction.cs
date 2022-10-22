@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using DG.Tweening;
 public class CardAction : MonoBehaviour
 {
@@ -46,7 +47,6 @@ public class CardAction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            //���� ��Ŭ���� ���� ��ҿ� ī�尡 ������� �� ī�带 ������ Drag���°� �ȴ� Drag= true
             if (!Physics.Raycast(ray, out hit)) return;
             if (hit.transform.gameObject.tag != "Card") return;
             cardTransformOriginPos = hit.transform.position;
@@ -59,12 +59,16 @@ public class CardAction : MonoBehaviour
 
             //Ray dragRay = new Ray(new Vector3(hitT.position.x,hitT.position.y, hitT.position.z + 1), Vector3.forward);
             Vector3 cameraToObj = hitT.transform.position - Camera.main.transform.position;
-            RaycastHit dragHit;
-            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0,1), Vector3.forward*3.0f, out dragHit))
+            List<RaycastHit> dragHit =
+                Physics.BoxCastAll(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0, 1), Vector3.forward * 3.0f).ToList();
+
+            dragHit.Remove(dragHit.Find((x) => x.collider.gameObject.transform == hitT));
+            if (dragHit != null)
             {
-                Debug.Log(dragHit.transform);
                 int rotateZ = -20;
-                if (dragHit.transform.gameObject.tag == "Card" /*TODO*/)
+                GameObject dragHitObj = dragHit.Find((x) => x.transform.gameObject.tag == "Card").collider.gameObject;
+                Debug.Log(dragHitObj);
+                if (dragHitObj != null /*TODO*/)
                 {
                     isHit = true;
                     //mergedCard = CardMerge.CardMergeGet(sl.GetComponent<CardInfo>().mydata, cloth.GetComponent<CardInfo>().mydata);
@@ -74,13 +78,14 @@ public class CardAction : MonoBehaviour
                     //     isCombinationable = true;
                     // }
                     //mergedCard = CardMerge.CardMergeGet(sl.GetComponent<CardInfo>().mydata, cloth.GetComponent<CardInfo>().mydata);
-         			 combinateCard = dragHit.transform;
+                    combinateCard = dragHitObj.transform;
                     if (true)//TODO
                     {
                         isCombinationable = true;
                     }
                     else goto EXIT;
-                    if (hitT.transform.position.x <= dragHit.transform.position.x) rotateZ *= -1;
+
+                    if (hitT.transform.position.x <= dragHitObj.transform.position.x) rotateZ *= -1;
                     hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rotateZ);
                 }
                 else
@@ -91,7 +96,7 @@ public class CardAction : MonoBehaviour
             }
             else combinateCard = null;
         }
-        EXIT:
+    EXIT:
         if (Input.GetMouseButtonUp(0))
         {
             Transform target = hitT;
@@ -106,7 +111,13 @@ public class CardAction : MonoBehaviour
 
                 Vector3 dirPos = Vector3.Normalize(combinateCard.position - hitT.transform.position);
                 target.DORotate(new Vector3(90, 180, target.rotation.eulerAngles.y < 180 ? 80 : -80), 1);
-                target.DOMove(originPos - dirPos * 3, 0.4f).OnComplete(() => target.DOMove(combinateCard.position, 0.2f));
+                target.DOMove(originPos - dirPos * 3, 0.4f).OnComplete(() =>
+                target.DOMove(combinateCard.position, 0.2f).OnComplete(() =>
+                {
+                    Camera.main.DOShakePosition(0.5f, 1, 5);
+                    Camera.main.DOShakeRotation(0.5f, 45, 5);
+                }));
+
             }
             else
             {
