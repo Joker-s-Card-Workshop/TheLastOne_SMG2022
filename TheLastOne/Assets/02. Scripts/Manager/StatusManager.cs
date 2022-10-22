@@ -5,7 +5,7 @@ using UnityEngine;
 public class StatusManager : Singleton<StatusManager>
 {
     public bool[] isStageClear = new bool[5];
-    private string savePath;
+    private string savePath = "DataSavePath";
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
