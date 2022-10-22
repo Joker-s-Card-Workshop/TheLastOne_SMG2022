@@ -17,6 +17,7 @@ public class CardAction : MonoBehaviour
     private bool isDrag = false;
     private bool isHit = false;
     private bool isCombinationable = false;
+    private bool isWhileCombination = false;
     private Transform hitT = null;
     private Transform cardTransform;
     private Vector3 cardTransformOriginPos;
@@ -41,6 +42,7 @@ public class CardAction : MonoBehaviour
     private void mouseInteraction()
     {
         if (isBattle) return;
+        if (isWhileCombination) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         List<CardData> mergedCard;
@@ -59,11 +61,9 @@ public class CardAction : MonoBehaviour
 
             //Ray dragRay = new Ray(new Vector3(hitT.position.x,hitT.position.y, hitT.position.z + 1), Vector3.forward);
             Vector3 cameraToObj = hitT.transform.position - Camera.main.transform.position;
-            List<RaycastHit> dragHit =
-                Physics.BoxCastAll(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0, 1), Vector3.forward * 3.0f).ToList();
-
-            dragHit.Remove(dragHit.Find((x) => x.collider.gameObject.transform == hitT));
-            if (dragHit != null)
+            RaycastHit dragHit;
+            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0,1), Vector3.forward*3.0f, out dragHit)
+                && dragHit.transform != hitT.transform)
             {
                 int rotateZ = -20;
                 GameObject dragHitObj = dragHit.Find((x) => x.transform.gameObject.tag == "Card").collider.gameObject;
@@ -71,26 +71,18 @@ public class CardAction : MonoBehaviour
                 if (dragHitObj != null /*TODO*/)
                 {
                     isHit = true;
-                    //mergedCard = CardMerge.CardMergeGet(sl.GetComponent<CardInfo>().mydata, cloth.GetComponent<CardInfo>().mydata);
-                    // mergedCard = CardMerge.CardMergeGet();
-                    // if (mergedCard != null)//TODO
-                    // {
-                    //     isCombinationable = true;
-                    // }
-                    //mergedCard = CardMerge.CardMergeGet(sl.GetComponent<CardInfo>().mydata, cloth.GetComponent<CardInfo>().mydata);
-                    combinateCard = dragHitObj.transform;
+                    combinateCard = dragHit.transform;
                     if (true)//TODO
                     {
                         isCombinationable = true;
                     }
                     else goto EXIT;
-
-                    if (hitT.transform.position.x <= dragHitObj.transform.position.x) rotateZ *= -1;
-                    hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rotateZ);
+                    if (hitT.transform.position.x >= dragHit.transform.position.x) rotateZ *= -1;
+                    hitT.rotation = Quaternion.Euler(0, rotateZ, 0);
                 }
                 else
                 {
-                    hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, 0);
+                    hitT.rotation = Quaternion.Euler(0, 0, 0);
                     isHit = false;
                 }
             }
@@ -106,25 +98,26 @@ public class CardAction : MonoBehaviour
             }
             else if (isCombinationable && combinateCard != null)
             {
+                isWhileCombination = true;
+
                 //Do combination
                 Vector3 originPos = hitT.transform.position;
 
                 Vector3 dirPos = Vector3.Normalize(combinateCard.position - hitT.transform.position);
-                target.DORotate(new Vector3(90, 180, target.rotation.eulerAngles.y < 180 ? 80 : -80), 1);
-                target.DOMove(originPos - dirPos * 3, 0.4f).OnComplete(() =>
-                target.DOMove(combinateCard.position, 0.2f).OnComplete(() =>
+                target.DORotate(new Vector3(0, hitT.rotation.eulerAngles.y < 180 ? 60 : -60, 0), 0.2f);
+                target.DOMove(originPos - dirPos * 15, 0.23f).OnComplete(() => target.DOMove(combinateCard.position, 0.12f).OnComplete(()=>
                 {
                     Camera.main.DOShakePosition(0.5f, 1, 5);
                     Camera.main.DOShakeRotation(0.5f, 45, 5);
+                    isWhileCombination = false;
                 }));
-
             }
             else
             {
                 //Back to original the position
                 Debug.Log("asd");
                 target.transform.DOMove(cardTransformOriginPos, 0.5f);
-                target.transform.DORotate(new Vector3(90, 180, 0), 0.5f);
+                target.transform.DORotate(new Vector3(0, 90, 0), 0.5f);
             }
             isHit = false;
             isCombinationable = false;
