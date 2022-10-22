@@ -15,7 +15,7 @@ public class StatusManager : Singleton<StatusManager>
     public bool[] isStageClear = new bool[6];
     public int stageIndex = 0;
 
-    private SaveClass saveClass;
+    private SaveClass saveClass = new SaveClass();
     private string savePath = "DataSavePath";
     [SerializeField]
     private bool DEBUG;
