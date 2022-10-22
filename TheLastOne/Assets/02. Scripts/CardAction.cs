@@ -118,7 +118,7 @@ public class CardAction : MonoBehaviour
                     cardMergePC.transform.position = combinateCard.position + Vector3.back;
                     cardMergePC.Play();
                     SoundManager.Instance.PlaySoundClip("SFX_CardMerge1", SoundType.SFX, 0.8f);
-                    SoundManager.Instance.PlaySoundClip("SFX_CardMerge3", SoundType.SFX, 0.1f);
+                    SoundManager.Instance.PlaySoundClip("SFX_CardMerge3", SoundType.SFX, 0.1f   );
                     isWhileCombination = false;
                 }));
             }
