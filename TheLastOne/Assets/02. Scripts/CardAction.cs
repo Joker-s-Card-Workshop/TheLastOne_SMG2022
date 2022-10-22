@@ -12,6 +12,12 @@ public class CardAction : MonoBehaviour
     public float cardAniDuration = 0;
     public float cardAniZ = 0;
     public GameObject cardOb;
+
+    [SerializeField]
+    private ParticleSystem cardDropPC;
+    [SerializeField]
+    private ParticleSystem cardMergePC;
+
     private bool dragDrop = false;
     private bool isBattle = false;
     private bool isDrag = false;
@@ -90,6 +96,8 @@ public class CardAction : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Transform target = hitT;
+            cardDropPC.transform.position = hitT.position + Vector3.back;
+            cardDropPC.Play();
             if (!isHit)
             {
                 ChangeCardPosToMousePos(hitT, mouseUpDist);
@@ -105,15 +113,18 @@ public class CardAction : MonoBehaviour
                 target.DORotate(new Vector3(0, hitT.rotation.eulerAngles.y < 180 ? 60 : -60, 0), 0.2f);
                 target.DOMove(originPos - dirPos * 15, 0.23f).OnComplete(() => target.DOMove(combinateCard.position, 0.12f).OnComplete(() =>
                 {
-                    Camera.main.DOShakePosition(1, 3, 10);
-                    Camera.main.DOShakeRotation(1, 5, 10);
+                    Camera.main.DOShakePosition(0.4f, 3, 10);
+                    Camera.main.DOShakeRotation(0.4f, 5, 10);
+                    cardMergePC.transform.position = combinateCard.position + Vector3.back;
+                    cardMergePC.Play();
+                    SoundManager.Instance.PlaySoundClip("SFX_Card_Drop_Thing", SoundType.SFX);
+                    SoundManager.Instance.PlaySoundClip("SFX_Card_Drop", SoundType.SFX);
                     isWhileCombination = false;
                 }));
             }
             else
             {
                 //Back to original the position
-                Debug.Log("asd");
                 target.transform.DOMove(cardTransformOriginPos, 0.5f);
                 target.transform.DORotate(new Vector3(0, 90, 0), 0.5f);
             }
