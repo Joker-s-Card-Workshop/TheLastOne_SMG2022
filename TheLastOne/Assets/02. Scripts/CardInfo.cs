@@ -13,6 +13,9 @@ public class CardInfo : MonoBehaviour
     private MeshRenderer _frameMeshRenderer;
     [SerializeField]
     private MeshRenderer _backMeshRenderer;
+    [SerializeField]
+    private Transform _illustParentTR;
+
     public float gravityScale = 98;
 
     public CardData mydata;
@@ -31,9 +34,11 @@ public class CardInfo : MonoBehaviour
     {
         mydata = cardData;
 
-        Debug.Log(cardData.frameTexture);
         _frameMeshRenderer.material.SetTexture("_MainTex", cardData.frameTexture);
         _backMeshRenderer.material.SetTexture("_MainTex", cardData.backTexture);
+
+        var illustGO = Instantiate(cardData.IllustPrefab, _illustParentTR);
+        illustGO.transform.localPosition = Vector3.zero;
     }
 
 }
