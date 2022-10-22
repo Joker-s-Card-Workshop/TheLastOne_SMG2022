@@ -89,8 +89,11 @@ public class CardAction : MonoBehaviour
             {
                 //Do combination
                 Vector3 originPos = hitT.transform.position;
+                Transform target = hitT;
+
                 Vector3 dirPos = Vector3.Normalize(combinateCard.position - hitT.transform.position);
-                hitT.DOMove(originPos - dirPos * 3, 0.8f).OnComplete(() => hitT.DOMove(combinateCard.position, 0.3f));
+                target.DORotate(new Vector3(90, 180, target.rotation.eulerAngles.y < 180 ? 80 : -80), 1);
+                target.DOMove(originPos - dirPos * 3, 0.4f).OnComplete(() => target.DOMove(combinateCard.position, 0.2f));
             }
             else
             {
