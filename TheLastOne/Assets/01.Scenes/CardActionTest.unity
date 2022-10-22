@@ -156,6 +156,39 @@ MonoBehaviour:
   cardOriginPrefab: {fileID: 1033828497196700319, guid: e0a5e4d7daae6b94d82173c0857f005e, type: 3}
   cardAction: {fileID: 1189239205}
   dropPS: {fileID: 409138036}
+  stageData:
+  - cardNames:
+    - Slave
+    - Slave
+    - Cloth
+    - Cloth
+  - cardNames:
+    - Slave
+    - Slave
+    - Cloth
+    - Cloth
+  - cardNames:
+    - Citizen
+    - Citizen
+    - Citizen
+    - Sword
+    - Sword
+    - Sword
+  - cardNames:
+    - Knight
+    - Knight
+    - Heart
+    - Heart
+  - cardNames:
+    - Novel
+    - Novel
+    - Addict
+    - Addict
+  - cardNames:
+    - KingsMan
+    - KingsMan
+    - Princess
+    - Princess
 --- !u!4 &2791831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5921553846548351292, guid: 32be665ad2ef6ff4ca523013a67b1344, type: 3}
