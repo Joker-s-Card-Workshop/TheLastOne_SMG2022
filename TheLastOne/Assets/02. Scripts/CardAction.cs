@@ -117,8 +117,8 @@ public class CardAction : MonoBehaviour
                     Camera.main.DOShakeRotation(0.4f, 5, 10);
                     cardMergePC.transform.position = combinateCard.position + Vector3.back;
                     cardMergePC.Play();
-                    SoundManager.Instance.PlaySoundClip("SFX_Card_Drop_Thing", SoundType.SFX);
-                    SoundManager.Instance.PlaySoundClip("SFX_Card_Drop", SoundType.SFX);
+                    SoundManager.Instance.PlaySoundClip("SFX_CardMerge1", SoundType.SFX, 0.8f);
+                    SoundManager.Instance.PlaySoundClip("SFX_CardMerge3", SoundType.SFX, 0.1f);
                     isWhileCombination = false;
                 }));
             }

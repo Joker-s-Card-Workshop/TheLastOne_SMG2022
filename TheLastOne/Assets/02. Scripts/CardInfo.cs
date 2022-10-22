@@ -11,7 +11,7 @@ using UnityEngine;
 public class CardInfo : MonoBehaviour
 {
     //중력가속도 9.8에 근사치인 10
-    public float gravityScale = 10;
+    public float gravityScale = 98;
 
     public CardData mydata;
 
