@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class CardAction : MonoBehaviour
 {
     public float mouseDownDist = 0;
     public float mouseUpDist = 0;
     public float cardAniSpeed = 0;
     public int cardAniCount = 0;
+    public float cardAniDuration = 0;
+    public float cardAniZ = 0;
     private bool dragDrop = false;
     private bool isBattle = false;
     // Start is called before the first frame update
@@ -73,69 +75,46 @@ public class CardAction : MonoBehaviour
     }
 
     /// <summary>
-    /// Card Battle Animation
+    /// Card Battle Animation Up
     /// </summary>
     /// <param name="t1"> Card1 Transform </param>
     /// <param name="t2"> Card2 Transform </param>
     /// <returns></returns>
     IEnumerator CardUpAni(Transform t1, Transform t2)
     {
-        Vector3 v1 = t1.position;
-        Vector3 v2 = t2.position;
-        int i = 0;
-
-        while (true)
-        {
-            i++;
-            v1.z -= cardAniSpeed;
-            v2.z -= cardAniSpeed;
-            t1.position = v1;
-            t2.position = v2;
-            if (i * cardAniSpeed >= 10)
-            {
-                t1.position = v1;
-                t2.position = v2;
-                StartCoroutine(CardDownAni(t1, t2));
-                yield break;
-                
-            }
-            yield return null;
-        }
+        var tween = t1.DOMoveZ(t1.position.z - cardAniZ, cardAniDuration).SetEase(Ease.Linear);
+        t2.DOMoveZ(t2.position.z - cardAniZ, cardAniDuration).SetEase(Ease.Linear);
+        yield return tween.WaitForCompletion();
+        StartCoroutine(CardBattleAni(t1, t2));
+        yield break;
     }
 
     /// <summary>
-    /// Card Battle Animation
+    /// Card Battle Animation Down
     /// </summary>
     /// <param name="t1"> Card1 Transform </param>
     /// <param name="t2"> Card2 Transform </param>
     /// <returns></returns>
     IEnumerator CardDownAni(Transform t1, Transform t2)
     {
-        Vector3 v1 = t1.position;
-        Vector3 v2 = t2.position;
-        int i = 0;
-
-        while (true)
-        {
-            i++;
-            v1.z += cardAniSpeed;
-            v2.z += cardAniSpeed;
-            t1.position = v1;
-            t2.position = v2;
-            if (i * cardAniSpeed >= 10)
-            {
-                t1.position = v1;
-                t2.position = v2;
-                isBattle = false;
-                yield break;
-            }
-            yield return null;
-        }
+        var tween = t1.DOMoveZ(t1.position.z + cardAniZ, cardAniDuration).SetEase(Ease.Linear);
+        t2.DOMoveZ(t2.position.z + cardAniZ, cardAniDuration).SetEase(Ease.Linear);
+        yield return tween.WaitForCompletion();
+        isBattle = false;
+        yield break;
     }
 
+    /// <summary>
+    /// Card Battle Animation Batttle
+    /// </summary>
+    /// <param name="t1"> Card1 Transform </param>
+    /// <param name="t2"> Card2 Transform </param>
+    /// <returns></returns>
     IEnumerator CardBattleAni(Transform t1, Transform t2)
     {
         //TODO
+        yield return new WaitForSeconds(1.0f);
+        StartCoroutine(CardDownAni(t1, t2));
         yield break;
     }
 

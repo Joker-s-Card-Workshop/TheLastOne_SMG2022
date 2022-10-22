@@ -117,6 +117,8 @@ MonoBehaviour:
   mouseUpDist: 29.5
   cardAniSpeed: 0.05
   cardAniCount: 10
+  cardAniDuration: 1
+  cardAniZ: 3
 --- !u!65 &8200830055778372849
 BoxCollider:
   m_ObjectHideFlags: 0
