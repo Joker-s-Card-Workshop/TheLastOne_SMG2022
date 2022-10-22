@@ -24,6 +24,10 @@ public class CardDataInit : Singleton<CardDataInit>
 {
     public List<CardData> Data;
     //Start is called before the first frame update
+    private void Awake()
+    {
+        this.Init();
+    }
     public void Init()
     {
         Data = new List<CardData>();

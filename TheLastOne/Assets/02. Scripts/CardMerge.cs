@@ -30,7 +30,8 @@ public static class CardMerge
                     return FindCardData(MergeData[i].ResultCard);
                 }
             }
-            else if (MergeData[i].SourceCard[0] == cardB.CardName)
+
+            if (MergeData[i].SourceCard[0] == cardB.CardName)
             {
                 if (MergeData[i].SourceCard[1] == cardA.CardName)
                 {
