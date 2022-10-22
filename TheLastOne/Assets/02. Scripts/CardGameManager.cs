@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+
+[System.Serializable]
+public class StageData
+{
+    public List<string> cardNames = new List<string>();
+}
 public class CardGameManager : MonoBehaviour
 {
     [SerializeField]
@@ -11,6 +17,9 @@ public class CardGameManager : MonoBehaviour
     private CardAction cardAction;
     [SerializeField]
     private ParticleSystem dropPS;
+
+    [SerializeField]
+    private StageData[] stageData = new StageData[6];
 
     List<GameObject> cardList = new List<GameObject>();
     List<CardData> cardDatas;
