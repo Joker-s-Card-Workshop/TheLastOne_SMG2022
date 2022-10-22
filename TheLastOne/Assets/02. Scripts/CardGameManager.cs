@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -8,78 +9,102 @@ public class CardGameManager : MonoBehaviour
     private GameObject cardOriginPrefab;
     [SerializeField]
     private CardAction cardAction;
+    [SerializeField]
+    private ParticleSystem dropPS;
 
     List<GameObject> cardList = new List<GameObject>();
-    
-    private const int testCnt = 5;
+    List<CardData> cardDatas;
+    private const int testCnt = 10;
     Vector3 size;
-    float ydelta;
+    float duration = 1;
     private void Start()
     {
-        size = this.GetComponent<BoxCollider>().bounds.size;
-        ydelta = this.GetComponent<BoxCollider>().bounds.center.y;
-        size.y += ydelta;
-        MakeBoundary();
-        StartGame(null);
+        dropPS.Stop();
+        size = MakeBoundary();
+        cardDatas = CardDataInit.Instance.Data;
     }
     public void StartGame(List<string> cardNameList)
     {
-        StartCoroutine(PrepareGame(cardNameList));
+        List<GameObject> cardObj = getCardObject(cardNameList);
+        StartCoroutine(PrepareGame(cardObj));
     }
-
-    IEnumerator PrepareGame(List<string> cardNameList)
+    IEnumerator PrepareGame(List<GameObject> cardObj)
     {
         yield return null;
-
+        
         cardAction.enabled = false;
-        for(var i = 0; i < testCnt; i++)
+        for(var i = 0; i < cardObj.Count; i++)
         {
-            cardList.Add(Instantiate(cardOriginPrefab));
-            cardList[cardList.Count - 1].transform.position = new Vector3(
-                Random.Range(-size.x/2, size.x/2), Random.Range(-size.y/2, size.y/2), this.transform.position.z - 10);
+            cardList.Add(cardObj[i]);
+            cardList[cardList.Count - 1].transform.position = new Vector3(0, 0, this.transform.position.z - i);
+            cardList[cardList.Count - 1].transform.rotation = Quaternion.Euler(0, 180, 0);
+            cardList[cardList.Count - 1].GetComponent<Rigidbody>().isKinematic = true;
         }
-
-        //StartCoroutine(CardSetting());
+        StartCoroutine(MoveCard());
     }
 
-    private void Update()
+    IEnumerator MoveCard()
     {
-        //MakeBoundary();
+        for (int i = 0; i < cardList.Count -1; i++)
+        {
+            Vector3 v = new Vector3(
+                Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), size.z);
+            var tween = cardList[i].transform.DOMove(v, duration).SetEase(Ease.Linear);
+            var tween2 = cardList[i].transform.DORotate(new Vector3(0, 0, 0), duration);
+            yield return tween.WaitForCompletion();
+            yield return tween2.WaitForCompletion();
+            cardList[i].GetComponent<Rigidbody>().isKinematic = false;
+        }
+        var tween3 = cardList[cardList.Count - 1].transform.DOMove(new Vector3(0,0, this.transform.position.z -10), duration).SetEase(Ease.Linear);
+        var tween4 = cardList[cardList.Count - 1].transform.DORotate(new Vector3(0, 0, 0), duration);
+        yield return tween3.WaitForCompletion();
+        yield return tween4.WaitForCompletion();
+        cardList[cardList.Count - 1].GetComponent<Rigidbody>().isKinematic = false;
+        cardAction.enabled = true;
+        yield break;
+        
     }
 
-    void MakeBoundary()
+    Vector3 MakeBoundary()
     {
         Vector3 center = this.transform.position;
         Vector3 size = this.GetComponent<BoxCollider>().bounds.size;
         float ydelta = this.GetComponent<BoxCollider>().bounds.center.y;
+        Vector3 cardSize = cardOriginPrefab.GetComponent<BoxCollider>().size;
         Vector3 A, B, C, D;
 
-        A = center + this.transform.right * size.x / 2 - this.transform.forward * size.y / 2;
-        B = center - this.transform.right * size.x / 2 - this.transform.forward * size.y / 2;
-        C = center - this.transform.right * size.x / 2 + this.transform.forward * size.y / 2;
-        D = center + this.transform.right * size.x / 2 + this.transform.forward * size.y / 2;
+        A = center + this.transform.right * (size.x / 2 - cardSize.x / 2) - this.transform.forward * (size.y / 2 - cardSize.y);
+        B = center - this.transform.right * (size.x / 2 - cardSize.x / 2) - this.transform.forward * (size.y / 2 - cardSize.y);
+        C = center - this.transform.right * (size.x / 2 - cardSize.x / 2) + this.transform.forward * (size.y / 2 - cardSize.y / 2);
+        D = center + this.transform.right * (size.x / 2 - cardSize.x / 2) + this.transform.forward * (size.y / 2 - cardSize.y / 2);
         A.y += ydelta;
         B.y += ydelta;
         C.y += ydelta;
         D.y += ydelta;
 
-        Debug.DrawLine(A, B, Color.red);
-        Debug.DrawLine(B, C, Color.red);
-        Debug.DrawLine(C, D, Color.red);
-        Debug.DrawLine(D, A, Color.red);
-
-       /* t1 = getAreaOfTriangle(point, A, B);
-        t2 = getAreaOfTriangle(point, A, C);
-        t3 = getAreaOfTriangle(point, B, D);
-        t4 = getAreaOfTriangle(point, C, D);*/
+        return new Vector3(A.x * 2, C.y * 2, this.transform.position.z - 10);
     }
 
-    float getAreaOfTriangle(Vector3 dot1, Vector3 dot2, Vector3 dot3)
+    private void OnCollisionEnter(Collision collision)
     {
-        Vector3 a = dot2 - dot1;
-        Vector3 b = dot3 - dot1;
-        Vector3 cross = Vector3.Cross(a, b);
+        dropPS.transform.position = collision.transform.position;
+        dropPS.Play();
+        SoundManager.Instance.PlaySoundClip("SFX_Card_Drop", SoundType.SFX, 0.8f);
+    }
 
-        return cross.magnitude / 2.0f;
+    List<GameObject> getCardObject(List<string> cards)
+    {
+        CardData card;
+        GameObject newCard;
+        List<GameObject> cardObj = new List<GameObject>();
+        for(int i =0; i < cards.Count; i++)
+        {
+            card = cardDatas.Find(str => str.CardName.CompareTo(cards[i]) == 0);
+            if (card == null) continue;
+            newCard = Instantiate(card.CardPrefab);
+            newCard.GetComponent<CardInfo>().SetCardData(card);
+            cardObj.Add(newCard);
+        }
+        return cardObj;
     }
 }
