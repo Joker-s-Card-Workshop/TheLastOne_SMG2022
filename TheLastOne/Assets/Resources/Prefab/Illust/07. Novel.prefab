@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5462295357018763725
 Transform:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 6768068740769943464}
   - component: {fileID: 2790055560134332368}
   - component: {fileID: 8730726092949192844}
-  - component: {fileID: 5961815598362239066}
+  - component: {fileID: 1373520183}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -197,7 +197,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &5961815598362239066
+--- !u!95 &1373520183
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ Animator:
   m_GameObject: {fileID: 1843450267736277918}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ea3217731ceb86c4c8cfde6a4654d8d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 885a64a9adfbe8f48aa183f53ec41f7a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 3210969709008332111}
   - component: {fileID: 6973003692882497899}
   - component: {fileID: 5971217625203576962}
-  - component: {fileID: 3937488031992704906}
+  - component: {fileID: 1704924663}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -352,7 +352,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &3937488031992704906
+--- !u!95 &1704924663
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ Animator:
   m_GameObject: {fileID: 2845365110597391992}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4cf72bdac130aea45ac265f8a661846d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 17ca995aeb279364cb529811e283e97a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 8186728499930475191}
   - component: {fileID: 5754558704676465134}
   - component: {fileID: 4470574409729214297}
-  - component: {fileID: 8337474563682149987}
+  - component: {fileID: 249445034}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Untagged
@@ -602,7 +602,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &8337474563682149987
+--- !u!95 &249445034
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -612,7 +612,7 @@ Animator:
   m_GameObject: {fileID: 8847338487029829654}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 131d9c71d821a1447984f4bbb1fd0600, type: 2}
+  m_Controller: {fileID: 9100000, guid: 86f5f8709a6f2964788bf4e857bf317e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -649,7 +649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8955478990672643791}
   m_LocalRotation: {x: -0, y: -0.000000011175872, z: 0.0000000018626454, w: 1}
-  m_LocalPosition: {x: -5.080732, y: -0.01252443, z: 0.46637252}
+  m_LocalPosition: {x: -5.080732, y: -0.77, z: 0.47}
   m_LocalScale: {x: 0.5244358, y: 0.52443564, z: 0.5244357}
   m_ConstrainProportionsScale: 0
   m_Children: []

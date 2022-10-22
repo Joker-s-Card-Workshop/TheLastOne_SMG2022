@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using DG.Tweening;
-public class CardAction : MonoBehaviour
+public class CardAction : Singleton<CardAction>
 {
     public float mouseDownDist = 0;
     public float mouseUpDist = 0;
@@ -17,6 +17,11 @@ public class CardAction : MonoBehaviour
     private ParticleSystem cardDropPC;
     [SerializeField]
     private ParticleSystem cardMergePC;
+    [SerializeField]
+    private ParticleSystem[] levelMergePCs;
+    [SerializeField]
+    private ParticleSystem[] bloodMergePCs;
+
 
     private bool dragDrop = false;
     private bool isBattle = false;
@@ -33,8 +38,8 @@ public class CardAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
-        cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
+        //sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
+        //cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
     }
 
     // Update is called once per frame
@@ -120,7 +125,7 @@ public class CardAction : MonoBehaviour
                     cardMergePC.transform.position = combinateCard.position + Vector3.back;
                     cardMergePC.Play();
                     SoundManager.Instance.PlaySoundClip("SFX_CardMerge1", SoundType.SFX, 0.8f);
-                    SoundManager.Instance.PlaySoundClip("SFX_CardMerge3", SoundType.SFX, 0.1f   );
+                    SoundManager.Instance.PlaySoundClip("SFX_CardMerge3", SoundType.SFX, 0.1f);
                     isWhileCombination = false;
 
                     var resultCardData = CardMerge.CardMergeGet(target.GetComponent<CardInfo>().mydata, combinateCard.GetComponent<CardInfo>().mydata);
@@ -131,15 +136,16 @@ public class CardAction : MonoBehaviour
                         {
                             Debug.Log(i);
                             Debug.Log(resultCardData[i].CardPrefab);
-                            var newCardGO = GameObject.Instantiate(resultCardData[i].CardPrefab);
+                            var newCardGO = Instantiate(resultCardData[i].CardPrefab);
                             Debug.Log(newCardGO);
                             newCardGO.GetComponent<CardInfo>().SetCardData(resultCardData[i]);
                             Debug.Log(newCardGO.transform.position);
                             newCardGO.transform.position = target.transform.position;
                         }
 
-                        GameObject.Destroy(target.gameObject);
-                        GameObject.Destroy(combinateCard.gameObject);
+                        StatusManager.Instance.ClearCheck();
+                        Destroy(target.gameObject);
+                        Destroy(combinateCard.gameObject);
                     }
                 }));
             }
