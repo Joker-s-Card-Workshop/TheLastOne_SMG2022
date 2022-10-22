@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1491012, g: 0.16732413, b: 0.17242192, a: 1}
+  m_IndirectSpecularColor: {r: 0.14910097, g: 0.16732381, b: 0.1724216, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -862,6 +862,8 @@ MonoBehaviour:
   cardOb: {fileID: 994441491}
   cardDropPC: {fileID: 40813837}
   cardMergePC: {fileID: 496233878}
+  levelMergePCs: []
+  bloodMergePCs: []
   cloth: {fileID: 0}
   sl: {fileID: 994441491}
 --- !u!4 &1189239206
@@ -878,6 +880,7 @@ Transform:
   m_Children:
   - {fileID: 40813839}
   - {fileID: 496233880}
+  - {fileID: 2089098408}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1552,6 +1555,68 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1001 &2089098407
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1189239206}
+    m_Modifications:
+    - target: {fileID: 7013422818932618504, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_Name
+      value: FX_MergeBleed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+--- !u!4 &2089098408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7013422818932618519, guid: 415b2dcc9e78b7244851cc8e1ef3c884, type: 3}
+  m_PrefabInstance: {fileID: 2089098407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4055529619971094212
 PrefabInstance:
   m_ObjectHideFlags: 0
