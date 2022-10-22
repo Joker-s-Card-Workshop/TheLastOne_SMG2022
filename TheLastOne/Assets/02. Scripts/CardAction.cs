@@ -62,13 +62,11 @@ public class CardAction : MonoBehaviour
             //Ray dragRay = new Ray(new Vector3(hitT.position.x,hitT.position.y, hitT.position.z + 1), Vector3.forward);
             Vector3 cameraToObj = hitT.transform.position - Camera.main.transform.position;
             RaycastHit dragHit;
-            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0,1), Vector3.forward*3.0f, out dragHit)
+            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0, 1), Vector3.forward * 3.0f, out dragHit)
                 && dragHit.transform != hitT.transform)
             {
                 int rotateZ = -20;
-                GameObject dragHitObj = dragHit.Find((x) => x.transform.gameObject.tag == "Card").collider.gameObject;
-                Debug.Log(dragHitObj);
-                if (dragHitObj != null /*TODO*/)
+                if (dragHit.collider.transform.CompareTag("Card") /*TODO*/)
                 {
                     isHit = true;
                     combinateCard = dragHit.transform;
@@ -105,10 +103,10 @@ public class CardAction : MonoBehaviour
 
                 Vector3 dirPos = Vector3.Normalize(combinateCard.position - hitT.transform.position);
                 target.DORotate(new Vector3(0, hitT.rotation.eulerAngles.y < 180 ? 60 : -60, 0), 0.2f);
-                target.DOMove(originPos - dirPos * 15, 0.23f).OnComplete(() => target.DOMove(combinateCard.position, 0.12f).OnComplete(()=>
+                target.DOMove(originPos - dirPos * 15, 0.23f).OnComplete(() => target.DOMove(combinateCard.position, 0.12f).OnComplete(() =>
                 {
-                    Camera.main.DOShakePosition(0.5f, 1, 5);
-                    Camera.main.DOShakeRotation(0.5f, 45, 5);
+                    Camera.main.DOShakePosition(1, 3, 10);
+                    Camera.main.DOShakeRotation(1, 5, 10);
                     isWhileCombination = false;
                 }));
             }
