@@ -7,6 +7,7 @@ public class Loby_button : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject stageSelect;
+    public GameObject[] preview;
     public void B_start_button()
     {
         mainMenu.SetActive(false);
@@ -16,5 +17,13 @@ public class Loby_button : MonoBehaviour
     {
         stageSelect.SetActive(false);
         mainMenu.SetActive(true);
+    }
+    public void B_open_preview(int option)
+    {
+        preview[option].SetActive(true);
+    }
+    public void B_close_preview(int option)
+    {
+        preview[option].SetActive(false);
     }
 }
