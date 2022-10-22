@@ -20,10 +20,14 @@ public class CardAction : MonoBehaviour
     private Transform cardTransform;
     private Transform combinateCard = null;
 
+    public GameObject cloth;
+    public GameObject sl;
     // Start is called before the first frame update
     void Start()
     {
         cardTransform = cardOb.transform;
+        sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
+        cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
     }
 
     // Update is called once per frame
@@ -54,7 +58,7 @@ public class CardAction : MonoBehaviour
             //Ray dragRay = new Ray(new Vector3(hitT.position.x,hitT.position.y, hitT.position.z + 1), Vector3.forward);
             Vector3 cameraToObj = hitT.transform.position - Camera.main.transform.position;
             RaycastHit dragHit;
-            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 1), Vector3.Normalize(cameraToObj), out dragHit))
+            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0,1), Vector3.forward*3.0f, out dragHit))
             {
                 Debug.Log(dragHit.transform);
                 int rotateZ = -20;
@@ -62,11 +66,11 @@ public class CardAction : MonoBehaviour
                 {
                     combinateCard = dragHit.transform;
                     isHit = true;
-                    // mergedCard = CardMerge.CardMergeGet();
-                    // if (mergedCard != null)//TODO
-                    // {
-                    //     isCombinationable = true;
-                    // }
+                    mergedCard = CardMerge.CardMergeGet(sl.GetComponent<CardInfo>().mydata, cloth.GetComponent<CardInfo>().mydata);
+                    if (mergedCard != null)//TODO
+                    {
+                        isCombinationable = true;
+                    }
 
                     if (hitT.transform.position.x <= dragHit.transform.position.x) rotateZ *= -1;
                     hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rotateZ);
@@ -96,6 +100,9 @@ public class CardAction : MonoBehaviour
             else
             {
                 //Back to original the position
+                //Debug.Log("asd");
+                //target.transform.DOMove(cardTransformOriginPos, 0.5f);
+                //target.transform.DORotate(new Vector3(90, 180, 0), 0.5f);
             }
             isHit = false;
             isCombinationable = false;
