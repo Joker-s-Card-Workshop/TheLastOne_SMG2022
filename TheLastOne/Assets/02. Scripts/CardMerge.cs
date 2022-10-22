@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardMerge : MonoBehaviour
-{
-    List<CardData> FindCardData(List<string> result)
+public static class CardMerge
+{ 
+    public static List<CardData> FindCardData(List<string> result)
     {
         List<CardData> cardData = CardDataInit.Instance.Data;
         List<CardData> returndata = new List<CardData>();
@@ -18,7 +18,7 @@ public class CardMerge : MonoBehaviour
         }
         return returndata;
     }
-    List<CardData> CardMergeGet(CardData cardA, CardData cardB)
+    public static List<CardData> CardMergeGet(CardData cardA, CardData cardB)
     {
         List<CardMergeData> MergeData = CardMergeInit.Instance.Data;
         for (var i = 0; i < MergeData.Count; i++)
