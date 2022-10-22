@@ -18,6 +18,8 @@ public class CardAction : MonoBehaviour
     private bool isCombinationable = false;
     private Transform hitT = null;
     private Transform cardTransform;
+    private Transform combinateCard = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class CardAction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            //만약 좌클릭을 누른 장소에 카드가 있을경우 그 카드를 선택후 Drag상태가 된다 Drag= true
             if (!Physics.Raycast(ray, out hit)) return;
             if (hit.transform.gameObject.tag != "Card") return;
             hitT = hit.transform;
@@ -46,24 +49,26 @@ public class CardAction : MonoBehaviour
         if (Input.GetMouseButton(0) && isDrag)
         {
             ChangeCardPosToMousePos(hitT, mouseDownDist);
-            
+
             //Ray dragRay = new Ray(new Vector3(hitT.position.x,hitT.position.y, hitT.position.z + 1), Vector3.forward);
+            Vector3 cameraToObj = hitT.transform.position - Camera.main.transform.position;
             RaycastHit dragHit;
-            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale / 1.5f, transform.forward, out dragHit))
+            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 1), Vector3.Normalize(cameraToObj), out dragHit))
             {
-                
-                int rZ = -20;
-                if(dragHit.transform.gameObject.tag == "Card" /*TODO*/)
+                Debug.Log(dragHit.transform);
+                int rotateZ = -20;
+                if (dragHit.transform.gameObject.tag == "Card" /*TODO*/)
                 {
+                    combinateCard = dragHit.transform;
                     isHit = true;
-                    
-                    if(true)//TODO
+
+                    if (true)//TODO
                     {
                         isCombinationable = true;
                     }
-                    
-                    if (hitT.transform.position.x <= dragHit.transform.position.x) rZ *= -1;
-                    hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rZ);
+
+                    if (hitT.transform.position.x <= dragHit.transform.position.x) rotateZ *= -1;
+                    hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rotateZ);
                 }
                 else
                 {
@@ -71,16 +76,21 @@ public class CardAction : MonoBehaviour
                     isHit = false;
                 }
             }
+            else combinateCard = null;
         }
         if (Input.GetMouseButtonUp(0))
         {
             if (!isHit)
             {
                 ChangeCardPosToMousePos(hitT, mouseUpDist);
+                return;
             }
-            if (isCombinationable)
+            if (isCombinationable && combinateCard != null)
             {
                 //Do combination
+                Vector3 originPos = hitT.transform.position;
+                Vector3 dirPos = Vector3.Normalize(combinateCard.position - hitT.transform.position);
+                hitT.DOMove(originPos - dirPos * 3, 0.8f).OnComplete(() => hitT.DOMove(combinateCard.position, 0.3f));
             }
             else
             {
@@ -189,32 +199,32 @@ public class CardAction : MonoBehaviour
         yield break;
     }
 
-/*
-=======
-using Unity.VisualScripting;
-using UnityEngine;
-using DG.Tweening;
-using AmplifyShaderEditor;
-using UnityEditor;
+    /*
+    =======
+    using Unity.VisualScripting;
+    using UnityEngine;
+    using DG.Tweening;
+    using AmplifyShaderEditor;
+    using UnityEditor;
 
-public class CardAction : MonoBehaviour
-{
-    public float moveDuration = 1;
+    public class CardAction : MonoBehaviour
+    {
+        public float moveDuration = 1;
 
-    [SerializeField]
-    private Transform cardPos;
-    private void Start()
-    {
-        CardAttack(cardPos.position);
-    }
-    private void Update()
-    {
-    }
-    void CardAttack(Vector3 pos)
-    {
-        Vector3 originPos = transform.position;
+        [SerializeField]
+        private Transform cardPos;
+        private void Start()
+        {
+            CardAttack(cardPos.position);
+        }
+        private void Update()
+        {
+        }
+        void CardAttack(Vector3 pos)
+        {
+            Vector3 originPos = transform.position;
 
-        transform.DOMove(pos, moveDuration / 2).SetEase(Ease.InBack).OnComplete(() => { transform.DOMove(originPos, moveDuration / 2); });
-    }
-*/
+            transform.DOMove(pos, moveDuration / 2).SetEase(Ease.InBack).OnComplete(() => { transform.DOMove(originPos, moveDuration / 2); });
+        }
+    */
 }
