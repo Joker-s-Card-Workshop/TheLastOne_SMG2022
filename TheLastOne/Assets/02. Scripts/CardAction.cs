@@ -18,6 +18,7 @@ public class CardAction : MonoBehaviour
     private bool isCombinationable = false;
     private Transform hitT = null;
     private Transform cardTransform;
+    private Vector3 cardTransformOriginPos;
     private Transform combinateCard = null;
 
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class CardAction : MonoBehaviour
             //만약 좌클릭을 누른 장소에 카드가 있을경우 그 카드를 선택후 Drag상태가 된다 Drag= true
             if (!Physics.Raycast(ray, out hit)) return;
             if (hit.transform.gameObject.tag != "Card") return;
+            cardTransformOriginPos = hit.transform.position;
             hitT = hit.transform;
             isDrag = true;
         }
@@ -59,13 +61,14 @@ public class CardAction : MonoBehaviour
                 int rotateZ = -20;
                 if (dragHit.transform.gameObject.tag == "Card" /*TODO*/)
                 {
-                    combinateCard = dragHit.transform;
                     isHit = true;
 
+                    combinateCard = dragHit.transform;
                     if (true)//TODO
                     {
                         isCombinationable = true;
                     }
+                    else goto EXIT;
 
                     if (hitT.transform.position.x <= dragHit.transform.position.x) rotateZ *= -1;
                     hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rotateZ);
@@ -78,18 +81,18 @@ public class CardAction : MonoBehaviour
             }
             else combinateCard = null;
         }
+        EXIT:
         if (Input.GetMouseButtonUp(0))
         {
+            Transform target = hitT;
             if (!isHit)
             {
                 ChangeCardPosToMousePos(hitT, mouseUpDist);
-                return;
             }
-            if (isCombinationable && combinateCard != null)
+            else if (isCombinationable && combinateCard != null)
             {
                 //Do combination
                 Vector3 originPos = hitT.transform.position;
-                Transform target = hitT;
 
                 Vector3 dirPos = Vector3.Normalize(combinateCard.position - hitT.transform.position);
                 target.DORotate(new Vector3(90, 180, target.rotation.eulerAngles.y < 180 ? 80 : -80), 1);
@@ -98,6 +101,9 @@ public class CardAction : MonoBehaviour
             else
             {
                 //Back to original the position
+                Debug.Log("asd");
+                target.transform.DOMove(cardTransformOriginPos, 0.5f);
+                target.transform.DORotate(new Vector3(90, 180, 0), 0.5f);
             }
             isHit = false;
             isCombinationable = false;
