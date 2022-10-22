@@ -38,6 +38,7 @@ public class CardAction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            //만약 좌클릭을 누른 장소에 카드가 있을경우 그 카드를 선택후 Drag상태가 된다 Drag= true
             if (!Physics.Raycast(ray, out hit)) return;
             if (hit.transform.gameObject.tag != "Card") return;
             hitT = hit.transform;
