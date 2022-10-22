@@ -38,8 +38,8 @@ public class CardAction : Singleton<CardAction>
     // Start is called before the first frame update
     void Start()
     {
-        sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
-        cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
+        //sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
+        //cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
     }
 
     // Update is called once per frame
