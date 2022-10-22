@@ -13,6 +13,8 @@ public class SaveClass
 public class StatusManager : Singleton<StatusManager>
 {
     public bool[] isStageClear = new bool[6];
+    public int stageIndex = 0;
+
     private SaveClass saveClass;
     private string savePath = "DataSavePath";
     [SerializeField]
@@ -42,5 +44,12 @@ public class StatusManager : Singleton<StatusManager>
     {
         saveClass.isStageClear = isStageClear;
         PlayerPrefs.SetString(savePath, JsonUtility.ToJson(saveClass));
+    }
+    public void ClearCheck()
+    {
+        if (FindObjectsOfType<CardInfo>().Length <= 1)
+        {
+            isStageClear[stageIndex] = true;
+        }
     }
 }
