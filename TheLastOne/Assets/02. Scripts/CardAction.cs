@@ -37,6 +37,7 @@ public class CardAction : MonoBehaviour
         if (isBattle) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        List<CardData> mergedCard;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -61,11 +62,11 @@ public class CardAction : MonoBehaviour
                 {
                     combinateCard = dragHit.transform;
                     isHit = true;
-
-                    if (true)//TODO
-                    {
-                        isCombinationable = true;
-                    }
+                    // mergedCard = CardMerge.CardMergeGet();
+                    // if (mergedCard != null)//TODO
+                    // {
+                    //     isCombinationable = true;
+                    // }
 
                     if (hitT.transform.position.x <= dragHit.transform.position.x) rotateZ *= -1;
                     hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rotateZ);
