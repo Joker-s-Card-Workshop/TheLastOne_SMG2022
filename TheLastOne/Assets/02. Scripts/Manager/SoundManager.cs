@@ -11,7 +11,7 @@ public enum SoundType
 public class AudioSourceClass
 {
     public AudioSource audioSource;
-    public float audioVolume;
+    public float audioVolume = 0.5f;
 }
 
 public class SoundManager : Singleton<SoundManager>
@@ -57,6 +57,15 @@ public class SoundManager : Singleton<SoundManager>
         }
 
         return clip;
+    }
+    public void AudioSoundSetting(float index)
+    {
+        //audioSourceClasses[SoundType.BGM].audioVolume = index;
+        audioSourceClasses[SoundType.BGM].audioSource.volume = index;
+    }
+    public void SFXSoundSetting(float index)
+    {
+        audioSourceClasses[SoundType.SFX].audioVolume = index;
     }
 
 }

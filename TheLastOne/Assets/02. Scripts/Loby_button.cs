@@ -2,21 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class Loby_button : MonoBehaviour
 {
-    public GameObject   mainMenu;
-    public GameObject   stageSelect;
+    public GameObject mainMenu;
+    public GameObject stageSelect;
     public GameObject[] stageB;
     public GameObject[] stageB_Lock;
     public GameObject[] preview;
-    public GameObject   in_game_setting;
+    public GameObject in_game_setting;
     public GameObject[] StageEnd;
     public GameObject[] StageEndStory;
     public void B_start_button()
     {
-        
+
         mainMenu.SetActive(false);
         Stage_info_Refresh();
         stageSelect.SetActive(true);
