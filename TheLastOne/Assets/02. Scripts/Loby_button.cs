@@ -50,10 +50,19 @@ public class Loby_button : MonoBehaviour
     {
         in_game_setting.SetActive(false);
     }
-    
     public void B_Stage_end2_story(int option)
     {
         StageEnd[option].SetActive(false);
         StageEndStory[option].SetActive(true);
+    }
+    public void B_2Stage_select()
+    {
+        Stage_info_Refresh();
+        stageSelect.SetActive(true);
+        for (int i = 1; i < 6; i++)
+        {
+            StageEnd[i].SetActive(false);
+            StageEndStory[i].SetActive(false);
+        }
     }
 }
