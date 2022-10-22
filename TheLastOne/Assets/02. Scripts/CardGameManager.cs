@@ -30,7 +30,7 @@ public class CardGameManager : MonoBehaviour
     {
         dropPS.Stop();
         size = MakeBoundary();
-        cardDatas = CardDataInit.Instance.Data;
+        cardDatas = CardDataINIT.Instance.Data;
 
         if (StatusManager.Instance != null)
             StartGame(stageData[StatusManager.Instance.stageIndex].cardNames);

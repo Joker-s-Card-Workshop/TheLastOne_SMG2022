@@ -8,7 +8,7 @@ public class CardMergeData
     public  List <string> ResultCard;
     public GameObject MergeFX;
 }
-public class CardMergeInit : Singleton<CardMergeInit>
+public class CardMergeINIT : Singleton<CardMergeINIT>
 {
     public List<CardMergeData> Data;
     private void Awake()

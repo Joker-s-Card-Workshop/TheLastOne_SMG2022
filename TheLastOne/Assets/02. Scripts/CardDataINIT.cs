@@ -24,7 +24,7 @@ public class CardData
     public Texture2D frameTexture;
     public Texture2D backTexture;
 }
-public class CardDataInit : Singleton<CardDataInit>
+public class CardDataINIT : Singleton<CardDataINIT>
 {
     public List<CardData> Data;
     //Start is called before the first frame update
