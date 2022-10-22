@@ -9,10 +9,12 @@ public class Loby_button : MonoBehaviour
     public GameObject   mainMenu;
     public GameObject   stageSelect;
     public GameObject[] stageB;
-    public GameObject[] stageBLock;
+    public GameObject[] stageB_Lock;
     public GameObject[] preview;
+    public GameObject   in_game_setting;
     public void B_start_button()
     {
+        
         mainMenu.SetActive(false);
         Stage_info_Refresh();
         stageSelect.SetActive(true);
@@ -35,7 +37,15 @@ public class Loby_button : MonoBehaviour
         for (int i = 1; i < 6; i++)
         {
             stageB[i].SetActive(StatusManager.Instance.isStageClear[i]);
-            stageBLock[i].SetActive(!StatusManager.Instance.isStageClear[i]);
+            stageB_Lock[i].SetActive(!StatusManager.Instance.isStageClear[i]);
         }
+    }
+    public void B_open_in_game_setting()
+    {
+        in_game_setting.SetActive(true);
+    }
+    public void B_close_in_game_setting()
+    {
+        in_game_setting.SetActive(false);
     }
 }
