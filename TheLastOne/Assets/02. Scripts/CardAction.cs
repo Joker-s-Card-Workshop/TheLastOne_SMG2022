@@ -10,18 +10,87 @@ public class CardAction : MonoBehaviour
     public int cardAniCount = 0;
     public float cardAniDuration = 0;
     public float cardAniZ = 0;
+    public GameObject cardOb;
     private bool dragDrop = false;
     private bool isBattle = false;
+    private bool isDrag = false;
+    private bool isHit = false;
+    private bool isCombinationable = false;
+    private Transform hitT = null;
+    private Transform cardTransform;
     // Start is called before the first frame update
     void Start()
     {
-        
+        cardTransform = cardOb.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        mouseInteraction();
+    }
 
+    private void mouseInteraction()
+    {
+        if (isBattle) return;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!Physics.Raycast(ray, out hit)) return;
+            if (hit.transform.gameObject.tag != "Card") return;
+            hitT = hit.transform;
+            isDrag = true;
+        }
+        if (Input.GetMouseButton(0) && isDrag)
+        {
+            ChangeCardPosToMousePos(hitT, mouseDownDist);
+            
+            //Ray dragRay = new Ray(new Vector3(hitT.position.x,hitT.position.y, hitT.position.z + 1), Vector3.forward);
+            RaycastHit dragHit;
+            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale / 1.5f, transform.forward, out dragHit))
+            {
+                
+                int rZ = -20;
+                if(dragHit.transform.gameObject.tag == "Card" /*TODO*/)
+                {
+                    isHit = true;
+                    
+                    if(true)//TODO
+                    {
+                        isCombinationable = true;
+                    }
+                    
+                    if (hitT.transform.position.x <= dragHit.transform.position.x) rZ *= -1;
+                    hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rZ);
+                }
+                else
+                {
+                    hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, 0);
+                    isHit = false;
+                }
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (!isHit)
+            {
+                ChangeCardPosToMousePos(hitT, mouseUpDist);
+            }
+            if (isCombinationable)
+            {
+                //Do combination
+            }
+            else
+            {
+                //Back to original the position
+            }
+            isHit = false;
+            isCombinationable = false;
+            isDrag = false;
+            hitT = null;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -41,37 +110,38 @@ public class CardAction : MonoBehaviour
             pos.x += (width + width / 2.0f);
         }
         this.transform.position = pos;
-        isBattle = true;
+
         StartCoroutine(CardUpAni(this.transform, other.transform));
     }
 
-    public void OnMouseDown()
-    {
-        ChangeCardPosToMousePos(mouseDownDist);
-    }
-    public void OnMouseDrag()
-    {
-        ChangeCardPosToMousePos(mouseDownDist);
-    }
+    /* public void OnMouseDown()
+     {
+         ChangeCardPosToMousePos(mouseDownDist);
+     }
+     public void OnMouseDrag()
+     {
+         ChangeCardPosToMousePos(mouseDownDist);
+     }
 
-    public void OnMouseUp()
-    {
-        ChangeCardPosToMousePos(mouseUpDist);
-        dragDrop = true;
-    }
+     public void OnMouseUp()
+     {
+         ChangeCardPosToMousePos(mouseUpDist);
+         dragDrop = true;
+     }*/
 
     /// <summary>
     /// Change a card position to mouse position
     /// </summary>
-    /// <param name="dist">mouse Z postion</param>
-    private void ChangeCardPosToMousePos(float dist)
+    /// <param name="tr"></param>
+    /// <param name="dist"></param>
+    private void ChangeCardPosToMousePos(Transform tr, float dist)
     {
-        if (isBattle) return;
+        if (isBattle || !tr) return;
         float cameraZ = Camera.main.transform.position.z;
         dist -= cameraZ;
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        this.transform.position = worldPosition;
+        tr.position = worldPosition;
     }
 
     /// <summary>
@@ -82,6 +152,7 @@ public class CardAction : MonoBehaviour
     /// <returns></returns>
     IEnumerator CardUpAni(Transform t1, Transform t2)
     {
+        isBattle = true;
         var tween = t1.DOMoveZ(t1.position.z - cardAniZ, cardAniDuration).SetEase(Ease.Linear);
         t2.DOMoveZ(t2.position.z - cardAniZ, cardAniDuration).SetEase(Ease.Linear);
         yield return tween.WaitForCompletion();
