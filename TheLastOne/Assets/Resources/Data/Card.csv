@@ -1,4 +1,12 @@
-﻿Index,CardName,CharacterType,IllustPrefab,CardFrameSprite,CardBackSprite
-1,Slave,Male,01_Slave,Frame_Normal,Back_Normal
-2,Cloth,Thing,02_Cloth,Frame_Normal,Back_Normal
-3,Citizen,Male,03_Citizen,Frame_Normal,Back_Normal
+﻿Index,CardName,CardName_Kor,CharacterType,IllustPrefab,CardFrameSprite,CardBackSprite
+0,Slave,노예,Male,00_Slave,Frame_Normal,Back_Normal
+1,Cloth,의상,Thing,01_Cloth,Frame_Thing,Back_Thing
+2,Citizen,시민,Male,02_Citizen,Frame_Normal,Back_Normal
+3,Sword,검,Thing,03_Sword,Frame_Thing,Back_Thing
+4,Knight,기사,Male,04_Knight,Frame_Rare,Back_Rare
+5,Heart,심장,Thing,05_Heart,Frame_Thing,Back_Thing
+6,Novel,귀족,Male,06_Novel,Frame_Rare,Back_Rare
+7,Addict,중독,Thing,07_Addict,Frame_Thing,Back_Thing
+8,KingsMan,부마,Male,08_KingsMan,Frame_Rare,Back_Rare
+9,Princess,공주,Female,09_Princess,Frame_Rare,Back_Rare
+10,King,왕,Male,10_King,Frame_King,Back_King

@@ -21,10 +21,14 @@ public class CardAction : MonoBehaviour
     private Vector3 cardTransformOriginPos;
     private Transform combinateCard = null;
 
+    public GameObject cloth;
+    public GameObject sl;
     // Start is called before the first frame update
     void Start()
     {
         cardTransform = cardOb.transform;
+        sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
+        cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
     }
 
     // Update is called once per frame
@@ -56,18 +60,20 @@ public class CardAction : MonoBehaviour
             //Ray dragRay = new Ray(new Vector3(hitT.position.x,hitT.position.y, hitT.position.z + 1), Vector3.forward);
             Vector3 cameraToObj = hitT.transform.position - Camera.main.transform.position;
             RaycastHit dragHit;
-            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 1), Vector3.Normalize(cameraToObj), out dragHit))
+            if (Physics.BoxCast(hitT.transform.position, hitT.lossyScale + new Vector3(0, 0,1), Vector3.forward*3.0f, out dragHit))
             {
                 Debug.Log(dragHit.transform);
                 int rotateZ = -20;
                 if (dragHit.transform.gameObject.tag == "Card" /*TODO*/)
                 {
                     isHit = true;
+                    //mergedCard = CardMerge.CardMergeGet(sl.GetComponent<CardInfo>().mydata, cloth.GetComponent<CardInfo>().mydata);
                     // mergedCard = CardMerge.CardMergeGet();
                     // if (mergedCard != null)//TODO
                     // {
                     //     isCombinationable = true;
                     // }
+                    //mergedCard = CardMerge.CardMergeGet(sl.GetComponent<CardInfo>().mydata, cloth.GetComponent<CardInfo>().mydata);
          			 combinateCard = dragHit.transform;
                     if (true)//TODO
                     {

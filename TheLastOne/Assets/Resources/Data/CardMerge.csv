@@ -1,2 +1,11 @@
 ﻿Index,CardA_Name,CardB_Name,ResultCard,MergeEffect,MergeSFX
-1,Slave,Cloth,Citizen,FX_MergeLight,SFX_Wear
+0,Slave,Cloth,Citizen,FX_MergeLight,SFX_Wear
+1,Citizen,Sword,Knight,FX_MergeLight,SFX_Wear
+2,Knight,Heart,Novel,FX_MergeLight,SFX_Wear
+3,Novel,Addict,KingsMan,FX_MergeLight,SFX_Wear
+4,KingsMan,Princess,King,FX_MergeLight,SFX_Wear
+5,KingsMan,Princess,Cloth,FX_MergeLight,SFX_Wear
+6,KingsMan,Princess,Sword,FX_MergeLight,SFX_Wear
+7,KingsMan,Princess,Heart,FX_MergeLight,SFX_Wear
+8,KingsMan,Princess,Addict,FX_MergeLight,SFX_Wear
+9,KingsMan,Princess,Princess,FX_MergeLight,SFX_Wear
