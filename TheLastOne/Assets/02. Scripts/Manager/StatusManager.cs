@@ -10,8 +10,9 @@ public class SaveClass
     public bool[] isStageClear = new bool[6];
 }
 
-public class StatusManager : Singleton<StatusManager>
+public class StatusManager : MonoBehaviour
 {
+    public static StatusManager Instance;
     public bool[] isStageClear = new bool[6];
     public int stageIndex = 0;
 
@@ -21,8 +22,9 @@ public class StatusManager : Singleton<StatusManager>
     private bool DEBUG;
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

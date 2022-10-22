@@ -31,6 +31,11 @@ public class CardGameManager : MonoBehaviour
         dropPS.Stop();
         size = MakeBoundary();
         cardDatas = CardDataInit.Instance.Data;
+
+        if (StatusManager.Instance != null)
+            StartGame(stageData[StatusManager.Instance.stageIndex].cardNames);
+        else
+            StartGame(stageData[1].cardNames);
     }
     public void StartGame(List<string> cardNameList)
     {
@@ -40,9 +45,9 @@ public class CardGameManager : MonoBehaviour
     IEnumerator PrepareGame(List<GameObject> cardObj)
     {
         yield return null;
-        
+
         cardAction.enabled = false;
-        for(var i = 0; i < cardObj.Count; i++)
+        for (var i = 0; i < cardObj.Count; i++)
         {
             cardList.Add(cardObj[i]);
             cardList[cardList.Count - 1].transform.position = new Vector3(0, 0, this.transform.position.z - i);
@@ -54,7 +59,7 @@ public class CardGameManager : MonoBehaviour
 
     IEnumerator MoveCard()
     {
-        for (int i = 0; i < cardList.Count -1; i++)
+        for (int i = 0; i < cardList.Count - 1; i++)
         {
             Vector3 v = new Vector3(
                 Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), size.z);
@@ -64,14 +69,14 @@ public class CardGameManager : MonoBehaviour
             yield return tween2.WaitForCompletion();
             cardList[i].GetComponent<Rigidbody>().isKinematic = false;
         }
-        var tween3 = cardList[cardList.Count - 1].transform.DOMove(new Vector3(0,0, this.transform.position.z -10), duration).SetEase(Ease.Linear);
+        var tween3 = cardList[cardList.Count - 1].transform.DOMove(new Vector3(0, 0, this.transform.position.z - 10), duration).SetEase(Ease.Linear);
         var tween4 = cardList[cardList.Count - 1].transform.DORotate(new Vector3(0, 0, 0), duration);
         yield return tween3.WaitForCompletion();
         yield return tween4.WaitForCompletion();
         cardList[cardList.Count - 1].GetComponent<Rigidbody>().isKinematic = false;
         cardAction.enabled = true;
         yield break;
-        
+
     }
 
     Vector3 MakeBoundary()
@@ -106,7 +111,7 @@ public class CardGameManager : MonoBehaviour
         CardData card;
         GameObject newCard;
         List<GameObject> cardObj = new List<GameObject>();
-        for(int i =0; i < cards.Count; i++)
+        for (int i = 0; i < cards.Count; i++)
         {
             card = cardDatas.Find(str => str.CardName.CompareTo(cards[i]) == 0);
             if (card == null) continue;

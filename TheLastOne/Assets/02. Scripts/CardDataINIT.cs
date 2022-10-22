@@ -31,6 +31,7 @@ public class CardDataInit : Singleton<CardDataInit>
     private void Awake()
     {
         this.Init();
+        DontDestroyOnLoad(this);
     }
     public void Init()
     {

@@ -13,6 +13,7 @@ public class CardMergeInit : Singleton<CardMergeInit>
     private void Awake()
     {
         this.Init();
+        DontDestroyOnLoad(this);
     }
     public void Init()
     {
