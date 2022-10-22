@@ -26,7 +26,7 @@ public class CardMergeInit : Singleton<CardMergeInit>
             newdata.SourceCard.Add(cardMergeDictionary[i]["CardA_Name"].ToString());
             newdata.SourceCard.Add(cardMergeDictionary[i]["CardB_Name"].ToString());
 
-            string[] words = cardMergeDictionary[i]["CardB_Name"].ToString().Split('|');
+            string[] words = cardMergeDictionary[i]["ResultCard"].ToString().Split('|');
 
             newdata.ResultCard = new List<string>();
             for(var j = 0; j < words.Length; j++)
