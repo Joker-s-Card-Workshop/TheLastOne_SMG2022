@@ -15,6 +15,8 @@ public class CardInfo : MonoBehaviour
     private MeshRenderer _backMeshRenderer;
     [SerializeField]
     private Transform _illustParentTR;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI _cardNameText;
 
     public float gravityScale = 98;
 
@@ -39,6 +41,7 @@ public class CardInfo : MonoBehaviour
 
         var illustGO = Instantiate(cardData.IllustPrefab, _illustParentTR);
         illustGO.transform.localPosition = Vector3.zero;
+        _cardNameText.text = cardData.CardNameKor;
     }
 
 }
