@@ -251,7 +251,7 @@ MonoBehaviour:
   _frameMeshRenderer: {fileID: 1033828497308776342}
   _backMeshRenderer: {fileID: 1033828497176537372}
   _illustParentTR: {fileID: 1033828496177969337}
-  _cardNameText: {fileID: 464786511688967274}
+  _cardName: {fileID: 464786511688967274}
   gravityScale: 98
 --- !u!54 &387224173
 Rigidbody:

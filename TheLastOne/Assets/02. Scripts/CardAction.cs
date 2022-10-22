@@ -135,11 +135,9 @@ public class CardAction : Singleton<CardAction>
                         for (var i = 0; i < resultCardData.Count; i++)
                         {
                             Debug.Log(i);
-                            Debug.Log(resultCardData[i].CardPrefab);
                             var newCardGO = Instantiate(resultCardData[i].CardPrefab);
                             Debug.Log(newCardGO);
                             newCardGO.GetComponent<CardInfo>().SetCardData(resultCardData[i]);
-                            Debug.Log(newCardGO.transform.position);
                             newCardGO.transform.position = target.transform.position;
                         }
 
