@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +13,6 @@ public class CardInfo : MonoBehaviour
     private MeshRenderer _frameMeshRenderer;
     [SerializeField]
     private MeshRenderer _backMeshRenderer;
-    //�߷°��ӵ� 9.8�� �ٻ�ġ�� 10
     public float gravityScale = 98;
 
     public CardData mydata;
@@ -24,10 +22,6 @@ public class CardInfo : MonoBehaviour
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        //foreach(Transform child in this.transform)
-        //{
-        //    mt[child.name] = child.GetComponent<Material>();
-        //}
     }
     public void FixedUpdate()
     {
@@ -37,8 +31,9 @@ public class CardInfo : MonoBehaviour
     {
         mydata = cardData;
 
-        //_frameMeshRenderer.material.mainTexture = cardData
-
+        Debug.Log(cardData.frameTexture);
+        _frameMeshRenderer.material.SetTexture("_MainTex", cardData.frameTexture);
+        _backMeshRenderer.material.SetTexture("_MainTex", cardData.backTexture);
     }
 
 }
