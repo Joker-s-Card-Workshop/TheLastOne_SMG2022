@@ -9,6 +9,7 @@ using AmplifyShaderEditor;
 public class CardData
 {
     public string CardName;
+    public string CardNameKor;
 
     public enum Season
     {
@@ -39,6 +40,7 @@ public class CardDataInit : Singleton<CardDataInit>
         {
             var newdata = new CardData();
             newdata.CardName = cardDictionary[i]["CardName"].ToString();
+            newdata.CardNameKor = cardDictionary[i]["CardName_Kor"].ToString();
             newdata.IllustPrefab = Resources.Load ( "Prefab/Illust/" + cardDictionary[i]["IllustPrefab"].ToString()) as GameObject;
             newdata.CardPrefab = Resources.Load ("Prefab/Card") as GameObject;
             switch (cardDictionary[i]["CharacterType"].ToString())
