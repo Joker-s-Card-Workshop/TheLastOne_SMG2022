@@ -38,10 +38,11 @@ public class CardAction : MonoBehaviour
         if (isBattle) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        List<CardData> mergedCard;
 
         if (Input.GetMouseButtonDown(0))
         {
-            //¸¸¾à ÁÂÅ¬¸¯À» ´©¸¥ Àå¼Ò¿¡ Ä«µå°¡ ÀÖÀ»°æ¿ì ±× Ä«µå¸¦ ¼±ÅÃÈÄ Drag»óÅÂ°¡ µÈ´Ù Drag= true
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò¿ï¿½ Ä«ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dragï¿½ï¿½ï¿½Â°ï¿½ ï¿½È´ï¿½ Drag= true
             if (!Physics.Raycast(ray, out hit)) return;
             if (hit.transform.gameObject.tag != "Card") return;
             cardTransformOriginPos = hit.transform.position;
@@ -62,14 +63,17 @@ public class CardAction : MonoBehaviour
                 if (dragHit.transform.gameObject.tag == "Card" /*TODO*/)
                 {
                     isHit = true;
-
-                    combinateCard = dragHit.transform;
+                    // mergedCard = CardMerge.CardMergeGet();
+                    // if (mergedCard != null)//TODO
+                    // {
+                    //     isCombinationable = true;
+                    // }
+         			 combinateCard = dragHit.transform;
                     if (true)//TODO
                     {
                         isCombinationable = true;
                     }
                     else goto EXIT;
-
                     if (hitT.transform.position.x <= dragHit.transform.position.x) rotateZ *= -1;
                     hitT.rotation = Quaternion.Euler(cardTransform.eulerAngles.x, cardTransform.eulerAngles.y, rotateZ);
                 }
