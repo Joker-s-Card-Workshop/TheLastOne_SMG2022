@@ -6,7 +6,7 @@ public static class CardMerge
 { 
     public static List<CardData> FindCardData(List<string> result)
     {
-        List<CardData> cardData = CardDataInit.Instance.Data;
+        List<CardData> cardData = CardDataINIT.Instance.Data;
         List<CardData> returndata = new List<CardData>();
         for (var i = 0; i < result.Count; i++)
         {
@@ -20,7 +20,7 @@ public static class CardMerge
     }
     public static List<CardData> CardMergeGet(CardData cardA, CardData cardB)
     {
-        List<CardMergeData> MergeData = CardMergeInit.Instance.Data;
+        List<CardMergeData> MergeData = CardMergeINIT.Instance.Data;
         for (var i = 0; i < MergeData.Count; i++)
         {
             if (MergeData[i].SourceCard[0] == cardA.CardName)
@@ -43,7 +43,7 @@ public static class CardMerge
     }
     public static CardMergeData GetMergeData(CardData cardA, CardData cardB)
     {
-        List<CardMergeData> MergeData = CardMergeInit.Instance.Data;
+        List<CardMergeData> MergeData = CardMergeINIT.Instance.Data;
         for (var i = 0; i < MergeData.Count; i++)
         {
             if (MergeData[i].SourceCard[0] == cardA.CardName)
