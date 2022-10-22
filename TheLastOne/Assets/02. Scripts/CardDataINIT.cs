@@ -20,7 +20,7 @@ public class CardData
     public GameObject IllustPrefab;
     public GameObject CardPrefab;
 }
-public class CardManage : Singleton<CardManage>
+public class CardDataInit : Singleton<CardDataInit>
 {
     public List<CardData> Data;
     //Start is called before the first frame update
