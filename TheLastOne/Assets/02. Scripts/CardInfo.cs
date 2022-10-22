@@ -6,21 +6,19 @@ using UnityEngine;
 
 public class CardInfo : MonoBehaviour
 {
-    
+    [SerializeField]
+    private MeshRenderer _frameMeshRenderer;
+    [SerializeField]
+    private MeshRenderer _backMeshRenderer;
 
     public CardData mydata;
-    Dictionary<string, Material> mt = new Dictionary<string, Material>();
-    private void Start()
-    {
-        //foreach(Transform child in this.transform)
-        //{
-        //    mt[child.name] = child.GetComponent<Material>();
-        //}
-    }
 
     public void SetCardData(CardData cardData)
     {
         mydata = cardData;
+
+        //_frameMeshRenderer.material.mainTexture = cardData
+
     }
 
 }
