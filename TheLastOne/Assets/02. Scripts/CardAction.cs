@@ -25,7 +25,6 @@ public class CardAction : MonoBehaviour
     private bool isCombinationable = false;
     private bool isWhileCombination = false;
     private Transform hitT = null;
-    private Transform cardTransform;
     private Vector3 cardTransformOriginPos;
     private Transform combinateCard = null;
 
@@ -34,7 +33,6 @@ public class CardAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cardTransform = cardOb.transform;
         sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
         cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
     }
@@ -96,8 +94,12 @@ public class CardAction : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Transform target = hitT;
-            cardDropPC.transform.position = hitT.position + Vector3.back;
-            cardDropPC.Play();
+
+            if (isHit)
+            {
+                cardDropPC.transform.position = hitT.position + Vector3.back;
+                cardDropPC.Play();
+            }
             if (!isHit)
             {
                 ChangeCardPosToMousePos(hitT, mouseUpDist);
@@ -120,6 +122,25 @@ public class CardAction : MonoBehaviour
                     SoundManager.Instance.PlaySoundClip("SFX_CardMerge1", SoundType.SFX, 0.8f);
                     SoundManager.Instance.PlaySoundClip("SFX_CardMerge3", SoundType.SFX, 0.1f   );
                     isWhileCombination = false;
+
+                    var resultCardData = CardMerge.CardMergeGet(target.GetComponent<CardInfo>().mydata, combinateCard.GetComponent<CardInfo>().mydata);
+                    if (resultCardData != null)
+                    {
+                        Debug.Log(resultCardData.Count);
+                        for (var i = 0; i < resultCardData.Count; i++)
+                        {
+                            Debug.Log(i);
+                            Debug.Log(resultCardData[i].CardPrefab);
+                            var newCardGO = GameObject.Instantiate(resultCardData[i].CardPrefab);
+                            Debug.Log(newCardGO);
+                            newCardGO.GetComponent<CardInfo>().SetCardData(resultCardData[i]);
+                            Debug.Log(newCardGO.transform.position);
+                            newCardGO.transform.position = target.transform.position;
+                        }
+
+                        GameObject.Destroy(target.gameObject);
+                        GameObject.Destroy(combinateCard.gameObject);
+                    }
                 }));
             }
             else

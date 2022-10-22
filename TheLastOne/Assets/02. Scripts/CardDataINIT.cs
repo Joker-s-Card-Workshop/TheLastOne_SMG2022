@@ -40,7 +40,7 @@ public class CardDataInit : Singleton<CardDataInit>
             var newdata = new CardData();
             newdata.CardName = cardDictionary[i]["CardName"].ToString();
             newdata.IllustPrefab = Resources.Load ( "Prefab/Illust/" + cardDictionary[i]["IllustPrefab"].ToString()) as GameObject;
-            newdata.CardPrefab = Resources.Load ( "Prefab/Card/CardPrefab") as GameObject;
+            newdata.CardPrefab = Resources.Load ("Prefab/Card") as GameObject;
             switch (cardDictionary[i]["CharacterType"].ToString())
             {
                 case "Male":
