@@ -9,14 +9,16 @@ using AmplifyShaderEditor;
 public class CardData
 {
     public string CardName;
+
     public enum Season
     {
         Male,
         Female,
         Thing
     }
-    public GameObject CardFramePrefab;    
+    public Season type;
     public GameObject IllustPrefab;
+    public GameObject CardPrefab;
 }
 public class CardManage : Singleton<CardManage>
 {
@@ -30,8 +32,22 @@ public class CardManage : Singleton<CardManage>
         {
             var newdata = new CardData();
             newdata.CardName = cardDictionary[i]["CardName"].ToString();
+            newdata.IllustPrefab = Resources.Load ( "Prefab/Illust" + cardDictionary[i]["IllustPrefab"].ToString()) as GameObject;
+            newdata.CardPrefab = Resources.Load ( "Prefab/Card/CardPrefab") as GameObject;
+            switch (cardDictionary[i]["CharacterType"].ToString())
+            {
+                case "Male":
+                    newdata.type = CardData.Season.Male;
+                    break;
+                case "Female":
+                    newdata.type = CardData.Season.Female;
+                    break;
+                case "Thing":
+                    newdata.type = CardData.Season.Thing;
+                    break; 
+            } 
+            Debug.Log("Prefab/Illust" + cardDictionary[i]["IllustPrefab"].ToString());
             Data.Add(newdata);
-            Debug.Log(Data[i].CardName);
         }
     }
 }
