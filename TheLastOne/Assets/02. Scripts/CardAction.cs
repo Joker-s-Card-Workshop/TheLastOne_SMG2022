@@ -18,9 +18,9 @@ public class CardAction : Singleton<CardAction>
     [SerializeField]
     private ParticleSystem cardMergePC;
     [SerializeField]
-    private ParticleSystem[] levelMergePCs;
+    private ParticleSystem bloodMergePCs;
     [SerializeField]
-    private ParticleSystem[] bloodMergePCs;
+    private ParticleSystem[] levelMergePCs;
 
 
     private bool dragDrop = false;
@@ -140,6 +140,13 @@ public class CardAction : Singleton<CardAction>
                             newCardGO.GetComponent<CardInfo>().SetCardData(resultCardData[i]);
                             newCardGO.transform.position = target.transform.position;
                         }
+
+                        if (target.GetComponent<CardInfo>().mydata.CardNameKor == "¼­¹Î" && combinateCard.GetComponent<CardInfo>().mydata.CardNameKor == "±â»ç")
+                        {
+                            levelMergePCs[0].transform.position = target.transform.position;
+                            levelMergePCs[0].Play();
+                        }
+                        else if(target.GetComponent<CardInfo>().mydata.CardNameKor == "¼­¹Î" && combinateCard.GetComponent<CardInfo>().mydata.CardNameKor == "±â»ç")
 
                         StatusManager.Instance.ClearCheck();
                         Destroy(target.gameObject);
