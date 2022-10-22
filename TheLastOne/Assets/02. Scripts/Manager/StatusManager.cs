@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class StatusManager : Singleton<StatusManager>
 {
-    public bool[] isStageClear = new bool[5];
+    public bool[] isStageClear = new bool[6];
     private string savePath;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        isStageClear[1] = true;
     }
     private void Start()
     {
