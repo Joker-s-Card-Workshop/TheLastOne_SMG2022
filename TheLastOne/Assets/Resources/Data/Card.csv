@@ -1,0 +1,4 @@
+﻿Index,CardName,CharacterType,IllustPrefab,CardFrameSprite,CardBackSprite
+1,Slave,Male,01_Slave,Frame_Normal,Back_Normal
+2,Cloth,Thing,02_Cloth,Frame_Normal,Back_Normal
+3,Citizen,Male,03_Citizen,Frame_Normal,Back_Normal
