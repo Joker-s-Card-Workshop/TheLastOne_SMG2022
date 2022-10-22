@@ -12,6 +12,8 @@ public class Loby_button : MonoBehaviour
     public GameObject[] stageB_Lock;
     public GameObject[] preview;
     public GameObject   in_game_setting;
+    public GameObject[] StageEnd;
+    public GameObject[] StageEndStory;
     public void B_start_button()
     {
         
@@ -47,5 +49,11 @@ public class Loby_button : MonoBehaviour
     public void B_close_in_game_setting()
     {
         in_game_setting.SetActive(false);
+    }
+    
+    public void B_Stage_end2_story(int option)
+    {
+        StageEnd[option].SetActive(false);
+        StageEndStory[option].SetActive(true);
     }
 }
