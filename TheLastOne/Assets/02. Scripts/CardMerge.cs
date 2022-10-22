@@ -41,4 +41,27 @@ public static class CardMerge
         }
         return null;
     }
+    public static CardMergeData GetMergeData(CardData cardA, CardData cardB)
+    {
+        List<CardMergeData> MergeData = CardMergeInit.Instance.Data;
+        for (var i = 0; i < MergeData.Count; i++)
+        {
+            if (MergeData[i].SourceCard[0] == cardA.CardName)
+            {
+                if (MergeData[i].SourceCard[1] == cardB.CardName)
+                {
+                    return MergeData[i];
+                }
+            }
+
+            if (MergeData[i].SourceCard[0] == cardB.CardName)
+            {
+                if (MergeData[i].SourceCard[1] == cardA.CardName)
+                {
+                    return MergeData[i];
+                }
+            }
+        }
+        return null;
+    }
 }
