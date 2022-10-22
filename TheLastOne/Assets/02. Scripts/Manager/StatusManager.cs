@@ -19,7 +19,14 @@ public class StatusManager : Singleton<StatusManager>
     private bool DEBUG;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         isStageClear[1] = true;
     }
     private void Start()
