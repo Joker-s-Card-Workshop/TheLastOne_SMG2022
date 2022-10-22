@@ -33,13 +33,11 @@ public class CardAction : Singleton<CardAction>
     private Vector3 cardTransformOriginPos;
     private Transform combinateCard = null;
 
-    public GameObject cloth;
-    public GameObject sl;
+    private GameObject exFxGO;
+
     // Start is called before the first frame update
     void Start()
     {
-        //sl.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[0]);
-        //cloth.GetComponent<CardInfo>().SetCardData(CardDataInit.Instance.Data[1]);
     }
 
     // Update is called once per frame
@@ -129,6 +127,7 @@ public class CardAction : Singleton<CardAction>
                     isWhileCombination = false;
 
                     var resultCardData = CardMerge.CardMergeGet(target.GetComponent<CardInfo>().mydata, combinateCard.GetComponent<CardInfo>().mydata);
+                    var mergeData = CardMerge.GetMergeData(target.GetComponent<CardInfo>().mydata, combinateCard.GetComponent<CardInfo>().mydata);
                     if (resultCardData != null)
                     {
                         Debug.Log(resultCardData.Count);
@@ -141,12 +140,8 @@ public class CardAction : Singleton<CardAction>
                             newCardGO.transform.position = target.transform.position;
                         }
 
-                        if (target.GetComponent<CardInfo>().mydata.CardNameKor == "¼­¹Î" && combinateCard.GetComponent<CardInfo>().mydata.CardNameKor == "±â»ç")
-                        {
-                            levelMergePCs[0].transform.position = target.transform.position;
-                            levelMergePCs[0].Play();
-                        }
-                        else if(target.GetComponent<CardInfo>().mydata.CardNameKor == "¼­¹Î" && combinateCard.GetComponent<CardInfo>().mydata.CardNameKor == "±â»ç")
+                        GameObject.Destroy(exFxGO);
+                        exFxGO = Instantiate(mergeData.MergeFX, target.position, Quaternion.identity);
 
                         StatusManager.Instance.ClearCheck();
                         Destroy(target.gameObject);

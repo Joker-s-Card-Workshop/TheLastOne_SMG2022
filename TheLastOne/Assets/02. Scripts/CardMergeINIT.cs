@@ -6,6 +6,7 @@ public class CardMergeData
 {
     public  List <string> SourceCard;
     public  List <string> ResultCard;
+    public GameObject MergeFX;
 }
 public class CardMergeInit : Singleton<CardMergeInit>
 {
@@ -25,6 +26,7 @@ public class CardMergeInit : Singleton<CardMergeInit>
             newdata.SourceCard = new List<string>();
             newdata.SourceCard.Add(cardMergeDictionary[i]["CardA_Name"].ToString());
             newdata.SourceCard.Add(cardMergeDictionary[i]["CardB_Name"].ToString());
+            newdata.MergeFX = Resources.Load("Prefab/FX/" + cardMergeDictionary[i]["MergeEffect"].ToString()) as GameObject;
 
             string[] words = cardMergeDictionary[i]["ResultCard"].ToString().Split('|');
 
