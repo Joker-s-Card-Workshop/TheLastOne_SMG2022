@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10754795, g: 0.10675758, b: 0.08559596, a: 1}
+  m_IndirectSpecularColor: {r: 0.10754819, g: 0.10675776, b: 0.085596085, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -161,15 +161,15 @@ MonoBehaviour:
     - Slave
     - Cloth
   - cardNames:
+    - Citizen
+    - Citizen
+    - Sword
     - Slave
-    - Cloth
   - cardNames:
+    - Knight
+    - Slave
+    - Knight
     - Citizen
-    - Citizen
-    - Citizen
-    - Sword
-    - Sword
-    - Sword
   - cardNames:
     - Knight
     - Knight
@@ -185,6 +185,12 @@ MonoBehaviour:
     - KingsMan
     - Princess
     - Princess
+  stageBackGround:
+  - {fileID: 2100000, guid: d60cc11c111897243ace612587c4c4a8, type: 2}
+  - {fileID: 2100000, guid: f28b515af02d5eb48be167a88a97d0fe, type: 2}
+  - {fileID: 2100000, guid: c8ed336c5f248ba4fb5a909fc3673774, type: 2}
+  - {fileID: 2100000, guid: 0412f02fd91000343a04c87d8188036e, type: 2}
+  - {fileID: 2100000, guid: d17efd2315084f947a8091d376cf3494, type: 2}
 --- !u!4 &2791831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5921553846548351292, guid: 32be665ad2ef6ff4ca523013a67b1344, type: 3}
@@ -1217,6 +1223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board
       objectReference: {fileID: 0}
+    - target: {fileID: 3282493791679511314, guid: 32be665ad2ef6ff4ca523013a67b1344, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d60cc11c111897243ace612587c4c4a8, type: 2}
     - target: {fileID: 5921553846548351292, guid: 32be665ad2ef6ff4ca523013a67b1344, type: 3}
       propertyPath: m_RootOrder
       value: 1

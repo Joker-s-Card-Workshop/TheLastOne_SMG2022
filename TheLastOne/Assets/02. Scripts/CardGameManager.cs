@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UIElements;
 
 
 [System.Serializable]
@@ -20,6 +21,8 @@ public class CardGameManager : MonoBehaviour
 
     [SerializeField]
     private StageData[] stageData = new StageData[6];
+    [SerializeField]
+    private Material[] stageBackGround;
 
     List<GameObject> cardList = new List<GameObject>();
     List<CardData> cardDatas;
@@ -33,7 +36,10 @@ public class CardGameManager : MonoBehaviour
         cardDatas = CardDataINIT.Instance.Data;
 
         if (StatusManager.Instance != null)
+        {
+            GetComponent<MeshRenderer>().material = stageBackGround[StatusManager.Instance.stageIndex];
             StartGame(stageData[StatusManager.Instance.stageIndex].cardNames);
+        }
         else
             StartGame(stageData[1].cardNames);
     }
