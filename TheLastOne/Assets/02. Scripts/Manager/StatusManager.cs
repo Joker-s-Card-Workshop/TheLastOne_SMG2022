@@ -53,14 +53,53 @@ public class StatusManager : MonoBehaviour
     public IEnumerator ClearCheck()
     {
         yield return new WaitForSeconds(1);
-        if (FindObjectsOfType<CardInfo>().Length <= 1)
-        {
-            if (stageIndex >= 5) SceneManager.LoadScene("EndScene");
+        var cards = FindObjectsOfType<CardInfo>();
 
+        bool isClear = false;
+
+        if (cards.Length <= 1)
+            switch (cards[0].mydata.CardName)
+            {
+                case "Citizen":
+                    if (stageIndex == 1)
+                        isClear = true;
+                    break;
+                case "Knight":
+                    if (stageIndex == 2)
+                        isClear = true;
+                    break;
+                case "Novel":
+                    if (stageIndex == 3)
+                        isClear = true;
+                    break;
+                case "KingsMan":
+                    if (stageIndex == 4)
+                        isClear = true;
+                    break;
+                case "King":
+                    if (stageIndex == 5)
+                        isClear = true;
+                    break;
+            }
+        Debug.Log(isClear);
+        if (isClear)
+        {
+            if (stageIndex >= 5)
+            {
+                 SceneManager.LoadScene("EndScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("Main");
+                if (stageIndex <= 4)
+                    isStageClear[stageIndex + 1] = true;
+                MainSceneUI.instance.ClearEffect(stageIndex, true);
+            }
+        }
+        else if (cards.Length <= 1)
+        {
             SceneManager.LoadScene("Main");
-            if (stageIndex <= 4)
-                isStageClear[stageIndex + 1] = true;
-            MainSceneUI.instance.ClearEffect(stageIndex);
+            MainSceneUI.instance.ClearEffect(stageIndex, false);
         }
     }
 }

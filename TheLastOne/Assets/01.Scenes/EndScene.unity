@@ -217,6 +217,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &82330872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82330874}
+  - component: {fileID: 82330873}
+  m_Layer: 0
+  m_Name: EndSceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &82330873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82330872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91a98dcad64fbd4bb79fd290eeb380d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &82330874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82330872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.3303843, y: -4.087269, z: 83.52017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628805382
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +683,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 774877181, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 890520093, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -646,6 +694,18 @@ PrefabInstance:
     - target: {fileID: 61221682487431557, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 865431698953993838, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 865431698953993838, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 865431698953993838, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 1037632763741660376, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_Name
@@ -683,6 +743,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 4f3d04c41eaa28a4da307c6426044877, type: 3}
+    - target: {fileID: 2385182167773902920, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_SceneBindings.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385182167773902920, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_SceneBindings.Array.data[12].key
+      value: 
+      objectReference: {fileID: 1374166448031133683, guid: a3f75b360ce6bbb4e81b7378d7c62d1b, type: 2}
+    - target: {fileID: 2385182167773902920, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_SceneBindings.Array.data[12].value
+      value: 
+      objectReference: {fileID: 82330872}
     - target: {fileID: 2385182167773902923, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -697,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5407062770638813987, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 1023410175
+      value: 16777215
       objectReference: {fileID: 0}
     - target: {fileID: 9045356349169724235, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_RootOrder
