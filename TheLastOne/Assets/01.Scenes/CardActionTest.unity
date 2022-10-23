@@ -161,15 +161,15 @@ MonoBehaviour:
     - Slave
     - Cloth
   - cardNames:
+    - Citizen
+    - Citizen
+    - Sword
     - Slave
-    - Cloth
   - cardNames:
+    - Knight
+    - Slave
+    - Knight
     - Citizen
-    - Citizen
-    - Citizen
-    - Sword
-    - Sword
-    - Sword
   - cardNames:
     - Knight
     - Knight
