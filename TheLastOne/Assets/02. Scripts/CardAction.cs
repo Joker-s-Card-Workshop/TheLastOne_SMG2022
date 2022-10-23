@@ -143,9 +143,9 @@ public class CardAction : Singleton<CardAction>
                         GameObject.Destroy(exFxGO);
                         exFxGO = Instantiate(mergeData.MergeFX, target.position, Quaternion.identity);
 
-                        StatusManager.Instance.ClearCheck();
-                        Destroy(target.gameObject);
                         Destroy(combinateCard.gameObject);
+                        Destroy(target.gameObject);
+                        StatusManager.Instance.StartCoroutine(StatusManager.Instance.ClearCheck());
                     }
                 }));
             }
