@@ -1,5 +1,110 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &212556931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 212556932}
+  - component: {fileID: 212556934}
+  - component: {fileID: 212556933}
+  m_Layer: 0
+  m_Name: Body 2 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &212556932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212556931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.74}
+  m_LocalScale: {x: 50.573627, y: 50.573627, z: 50.573627}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2385182167773902923}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &212556934
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212556931}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 74bbd945fd31fee4ba7280791dd716b8, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.64, y: 0.64}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &212556933
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212556931}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1037632763741660376
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +212,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 315c984d1332938408c45387f3dbb682, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f3d04c41eaa28a4da307c6426044877, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,6 +274,7 @@ Transform:
   m_Children:
   - {fileID: 2385182167389405976}
   - {fileID: 2015064049973852839}
+  - {fileID: 212556932}
   m_Father: {fileID: 9045356349169724235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -181,7 +287,7 @@ PlayableDirector:
   m_GameObject: {fileID: 2385182167773902921}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 599fde00bc1a8e641a275d3de9f83503, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: a3f75b360ce6bbb4e81b7378d7c62d1b, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -201,10 +307,20 @@ PlayableDirector:
     value: {fileID: 7458765706663612933}
   - key: {fileID: 4449544271196770851, guid: 599fde00bc1a8e641a275d3de9f83503, type: 2}
     value: {fileID: 6054924081854751977}
+  - key: {fileID: 4827432932979978904, guid: a3f75b360ce6bbb4e81b7378d7c62d1b, type: 2}
+    value: {fileID: 2385182167389405974}
+  - key: {fileID: -2280235388396557604, guid: a3f75b360ce6bbb4e81b7378d7c62d1b, type: 2}
+    value: {fileID: 7458765706663612933}
+  - key: {fileID: 4449544271196770851, guid: a3f75b360ce6bbb4e81b7378d7c62d1b, type: 2}
+    value: {fileID: 6054924081854751977}
+  - key: {fileID: 7344680862517693115, guid: a3f75b360ce6bbb4e81b7378d7c62d1b, type: 2}
+    value: {fileID: 212556933}
   m_ExposedReferences:
     m_References:
+    - c13af85ee65f3074f9611f5ba88a4c65: {fileID: 212556931}
     - 5249d54134812fa4c9d85bbb25eb7ea7: {fileID: 5404259985206099565}
     - f4fbed58278ab47418141e1aee45b0a4: {fileID: 6530219157789419768}
+    - cfbd72fde5618c649ac8f1dc03e99c7e: {fileID: 6547200174988256527}
 --- !u!1 &2669673254131288132
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +373,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -314,7 +430,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 0
+  randomSeed: 7634
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5127,7 +5243,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -5184,7 +5300,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 0
+  randomSeed: 7634
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5298,7 +5414,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3207547, g: 0, b: 0, a: 1}
+      maxColor: {r: 0.33962262, g: 0.014417935, b: 0.014417935, a: 0.6666667}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6430,7 +6546,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -6439,9 +6555,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 1}
+        key1: {r: 0.3584906, g: 0, b: 0, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -6456,7 +6572,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5397
-        atime2: 64379
+        atime2: 65535
         atime3: 65535
         atime4: 0
         atime5: 0
@@ -9432,7 +9548,7 @@ ParticleSystem:
     vector0_1:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.72
+      scalar: 0.7
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -14813,7 +14929,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -14870,7 +14986,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 0
+  randomSeed: 7634
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19683,7 +19799,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -19740,7 +19856,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 0
+  randomSeed: 7634
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -24568,8 +24684,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB178\uC608\uAC00 \uC2DC\uBBFC\uC758 \uD5C8\uB984\uD55C \uC637\uC744
-    \uD6D4\uCCD0 \uB2EC\uC544\uB0AC\uB2E4.\r"
+  m_text: "\uC6B0\uB9AC\uB97C \uB9C9\uC744 \uC218 \uC788\uB294\uAC74 \uC774\uC81C
+    \uC544\uBB34\uAC83\uB3C4 \uC5C6\uC5B4!\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53175092133c74a48aa89e3a3d8529a4, type: 2}
   m_sharedMaterial: {fileID: 8155151927484133015, guid: 53175092133c74a48aa89e3a3d8529a4, type: 2}
@@ -24725,8 +24841,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC628\uBAB8\uC744 \uAC00\uB9AC\uACE0 \uC2DC\uBBFC\uB4E4 \uC0AC\uC774\uC5D0\uC11C
-    \uC228\uC5B4 \uC9C0\uB0B4\uC790.."
+  m_text: "\uC774\uC81C \uD3B8\uD788 \uC274 \uC218 \uC788\uC5B4..!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53175092133c74a48aa89e3a3d8529a4, type: 2}
   m_sharedMaterial: {fileID: 8155151927484133015, guid: 53175092133c74a48aa89e3a3d8529a4, type: 2}
