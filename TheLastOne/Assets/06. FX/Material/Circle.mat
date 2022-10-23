@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortTex1:
-        m_Texture: {fileID: 2800000, guid: 74bbd945fd31fee4ba7280791dd716b8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7237481da52c705429e202e0344a9a57, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortTex2:
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 74bbd945fd31fee4ba7280791dd716b8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7237481da52c705429e202e0344a9a57, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _tex4coord:
@@ -101,5 +101,5 @@ Material:
     - _Vector0: {r: 0, g: 0, b: 0, a: 0}
     - _Vector1: {r: 0.01, g: -0.01, b: 0, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}
-    - _Vector3: {r: 0, g: 0.73, b: 0, a: 0}
+    - _Vector3: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
