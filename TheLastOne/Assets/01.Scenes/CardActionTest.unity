@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10754795, g: 0.10675758, b: 0.08559596, a: 1}
+  m_IndirectSpecularColor: {r: 0.10754819, g: 0.10675776, b: 0.085596085, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -161,15 +161,15 @@ MonoBehaviour:
     - Slave
     - Cloth
   - cardNames:
+    - Citizen
+    - Citizen
+    - Sword
     - Slave
-    - Cloth
   - cardNames:
+    - Knight
+    - Slave
+    - Knight
     - Citizen
-    - Citizen
-    - Citizen
-    - Sword
-    - Sword
-    - Sword
   - cardNames:
     - Knight
     - Knight
