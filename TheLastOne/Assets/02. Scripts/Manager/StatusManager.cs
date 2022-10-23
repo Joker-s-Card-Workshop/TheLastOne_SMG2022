@@ -55,6 +55,8 @@ public class StatusManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         if (FindObjectsOfType<CardInfo>().Length <= 1)
         {
+            if (stageIndex >= 5) SceneManager.LoadScene("EndScene");
+
             SceneManager.LoadScene("Main");
             if (stageIndex <= 4)
                 isStageClear[stageIndex + 1] = true;
