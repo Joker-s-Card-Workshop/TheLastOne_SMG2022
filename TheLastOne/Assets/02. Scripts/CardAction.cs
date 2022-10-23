@@ -137,11 +137,12 @@ public class CardAction : Singleton<CardAction>
                             var newCardGO = Instantiate(resultCardData[i].CardPrefab);
                             Debug.Log(newCardGO);
                             newCardGO.GetComponent<CardInfo>().SetCardData(resultCardData[i]);
-                            newCardGO.transform.position = target.transform.position;
+                            newCardGO.transform.position = target.transform.position + Vector3.back;
                         }
 
                         GameObject.Destroy(exFxGO);
-                        exFxGO = Instantiate(mergeData.MergeFX, target.position, Quaternion.identity);
+
+                        exFxGO = Instantiate(mergeData.MergeFX, target.position + Vector3.back, Quaternion.identity);
 
                         Destroy(combinateCard.gameObject);
                         Destroy(target.gameObject);

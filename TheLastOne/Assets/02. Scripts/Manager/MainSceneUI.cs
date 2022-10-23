@@ -21,7 +21,7 @@ public class MainSceneUI : MonoBehaviour
     }
     public void ClearEffect(int i)
     {
-        ClearScreen[i].SetActive(true);
+        ClearScreen[i-1].SetActive(true);
     }
     public void GameStart(int i)
     {

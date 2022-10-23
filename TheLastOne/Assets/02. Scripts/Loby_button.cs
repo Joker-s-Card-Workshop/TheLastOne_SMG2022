@@ -35,6 +35,10 @@ public class Loby_button : MonoBehaviour
     {
         preview[option].SetActive(false);
     }
+    public void B_ExitGame()
+    {
+        Application.Quit();
+    }
     public void Stage_info_Refresh()
     {
         for (int i = 1; i < 6; i++)
