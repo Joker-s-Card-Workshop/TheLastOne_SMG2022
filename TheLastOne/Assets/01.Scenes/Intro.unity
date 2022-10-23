@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 774877179, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 61221682487431557, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
@@ -243,6 +247,10 @@ PrefabInstance:
     - target: {fileID: 1037632763741660376, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_Name
       value: Timeline_End (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037632763741660376, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2385182167389405977, guid: 2fc9aa9efb652be49aa26e1ef818703b, type: 3}
       propertyPath: m_Color.a
@@ -808,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7407339454533971146, guid: 64a9f7ff3efa0fc4db0f9687e0466ec5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7407339454533971147, guid: 64a9f7ff3efa0fc4db0f9687e0466ec5, type: 3}
       propertyPath: m_RootOrder
