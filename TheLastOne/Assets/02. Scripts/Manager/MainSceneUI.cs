@@ -7,6 +7,8 @@ public class MainSceneUI : MonoBehaviour
 {
     public static MainSceneUI instance;
     public GameObject[] ClearScreen;
+    public Loby_button loby_Button;
+
     private void Awake()
     {
         if (instance == null)
@@ -27,6 +29,11 @@ public class MainSceneUI : MonoBehaviour
     {
         StatusManager.Instance.stageIndex = i;
         SceneManager.LoadScene("CardActionTest");
+    }
+
+    public void OpenSelectStageScreen()
+    {
+        loby_Button.B_start_button();
     }
 
 }

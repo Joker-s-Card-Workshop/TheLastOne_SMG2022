@@ -6778,6 +6778,7 @@ MonoBehaviour:
   - {fileID: 1732922599}
   - {fileID: 1652814579}
   - {fileID: 678539770}
+  loby_Button: {fileID: 1474340507}
 --- !u!1001 &1860900946
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UIElements;
-
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class StageData
@@ -127,4 +127,16 @@ public class CardGameManager : MonoBehaviour
         }
         return cardObj;
     }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("Main");
+        MainSceneUI.instance.OpenSelectStageScreen();
+    }
+
 }
