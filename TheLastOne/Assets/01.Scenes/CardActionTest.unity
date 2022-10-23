@@ -167,25 +167,31 @@ MonoBehaviour:
     - Slave
   - cardNames:
     - Knight
-    - Slave
     - Knight
     - Citizen
+    - Slave
   - cardNames:
+    - Novel
+    - Citizen
     - Knight
-    - Knight
-    - Heart
-    - Heart
+    - Slave
   - cardNames:
     - Novel
     - Novel
-    - Addict
-    - Addict
+    - Knight
+    - Citizen
+    - Slave
   - cardNames:
-    - KingsMan
-    - KingsMan
-    - Princess
-    - Princess
+    - Novel
+    - Novel
+    - Knight
+    - Knight
+    - Slave
+    - Slave
+    - Heart
+    - Slave
   stageBackGround:
+  - {fileID: 2100000, guid: d60cc11c111897243ace612587c4c4a8, type: 2}
   - {fileID: 2100000, guid: d60cc11c111897243ace612587c4c4a8, type: 2}
   - {fileID: 2100000, guid: f28b515af02d5eb48be167a88a97d0fe, type: 2}
   - {fileID: 2100000, guid: c8ed336c5f248ba4fb5a909fc3673774, type: 2}
